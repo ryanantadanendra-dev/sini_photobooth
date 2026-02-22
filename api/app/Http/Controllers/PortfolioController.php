@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
 {
+    public function get() {
+        $portfolios = Portfolio::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $portfolios
+        ], 201);
+    }
+
     public function store(Request $request) {
         $validateImage = $request->validate([
             'images'   => ['required', 'array', 'min:1'],

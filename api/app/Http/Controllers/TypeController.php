@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class TypeController extends Controller
 {
+    public function get() {
+        $types = Type::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $types
+        ], 201);
+    }
+
     public function store(Request $request) {
         $images = [];
         $path = null;
@@ -18,7 +27,7 @@ class TypeController extends Controller
             'subname' => 'required|max:255',
             'description' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png|nullable',
-            'setupImages' => ['required', 'array', 'min:1'],
+            'setupImages' => ['nullable', 'array', 'min:1'],
             'setupImages.*' => 'image|mimes:jpeg,jpg,png|max:2048',
             'vidLink' => 'nullable|string',
         ]);

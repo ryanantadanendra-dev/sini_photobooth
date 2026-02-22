@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Storage;
 
 class PopupController extends Controller
 {
+    public function get() {
+        $popup = Popup::where('id', 1)->firstOrFail();
+
+        return response()->json([
+            'success' => true,
+            'data' => $popup
+        ], 201);
+    }
+
     public function store(Request $request) {
         $validatedData = $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,webp|max:2048'

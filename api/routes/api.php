@@ -12,6 +12,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 // TYPES
+Route::get('/dashboard/types', [TypeController::class, 'get']);
 Route::post('/dashboard/type/add', [TypeController::class, "store"]);
 Route::put('/dashboard/type/edit/{slug}', [TypeController::class, 'edit']);
 Route::put('/dashboard/type/edit/image/{slug}', [TypeController::class, 'editImage']);
@@ -26,9 +27,11 @@ Route::put('dashboard/blogs/edit/{id}', [BlogController::class, 'edit']);
 Route::put('dashboard/blogs/edit/image/{id}', [BlogController::class, 'editImage']);
 
 // PORTFOLIOS
+Route::get('/dashboard/portfolios', [PortfolioController::class, 'get']);
 Route::post('/dashboard/portfolio/add', [PortfolioController::class, 'store']);
 Route::delete('dashboard/portfolio/delete/{id}', [PortfolioController::class, 'destroy']);
 
 // POPUP
+Route::get('/dashboard/popup', [PopupController::class, 'get']);
 Route::post('/dashboard/popup/add', [PopupController::class, 'store']);
 Route::put('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);
