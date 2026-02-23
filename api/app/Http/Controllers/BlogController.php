@@ -57,8 +57,8 @@ class BlogController extends Controller
             ], 201);
     }
 
-    public function edit($id, Request $request) {
-        $blog = Blog::findOrFail($id);
+    public function edit($slug, Request $request) {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
 
         if($blog) {
             $validatedData = $request->validate([
@@ -88,8 +88,8 @@ class BlogController extends Controller
         }
     }
 
-    public function delete($id) {
-        $blog = Blog::findOrFail($id);
+    public function delete($slug) {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
 
         if($blog) {
             $image = public_path('/storage/'.$blog->image);
@@ -107,8 +107,8 @@ class BlogController extends Controller
         }
     }
 
-    public function editImage($id, Request $request) {
-        $blog = Blog::findOrFail($id);
+    public function editImage($slug, Request $request) {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
         
         if($blog) {
             if ($blog->image && Storage::disk('public')->exists($blog->image)) {

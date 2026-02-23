@@ -18,18 +18,19 @@ Route::put('/dashboard/type/edit/{slug}', [TypeController::class, 'edit']);
 Route::put('/dashboard/type/edit/image/{slug}', [TypeController::class, 'editImage']);
 Route::delete('/dashboard/type/delete/{slug}', [TypeController::class, 'destroy']);
 Route::put('/dashboard/type/delete/setupimage/{slug}/{index}', [TypeController::class, 'deleteSetupImage']);
+Route::post('/dashboard/type/add/setupimage/{slug}', [TypeController::class, 'addImage']);
 
 // BLOGS
 Route::get('/dashboard/blogs', [BlogController::class, 'get']);
 Route::post('/dashboard/blogs/add', [BlogController::class, 'add']);
 Route::delete('/dashboard/blogs/delete/{id}', [BlogController::class, 'delete']);
-Route::put('dashboard/blogs/edit/{id}', [BlogController::class, 'edit']);
-Route::put('dashboard/blogs/edit/image/{id}', [BlogController::class, 'editImage']);
+Route::put('dashboard/blogs/edit/{slug}', [BlogController::class, 'edit']);
+Route::put('dashboard/blogs/edit/image/{slug}', [BlogController::class, 'editImage']);
 
 // PORTFOLIOS
 Route::get('/dashboard/portfolios', [PortfolioController::class, 'get']);
 Route::post('/dashboard/portfolio/add', [PortfolioController::class, 'store']);
-Route::delete('dashboard/portfolio/delete/{id}', [PortfolioController::class, 'destroy']);
+Route::delete('dashboard/portfolio/delete/{slug}', [PortfolioController::class, 'destroy']);
 
 // POPUP
 Route::get('/dashboard/popup', [PopupController::class, 'get']);

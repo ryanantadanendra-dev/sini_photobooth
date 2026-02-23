@@ -61,6 +61,41 @@ class TypeController extends Controller
         ], 201);
     }
 
+    public function addImage(Request $request, $slug) {
+        $type = Type::where('slug', $slug)->firstOrFail();
+
+
+        $validatedData = $request->validate([
+            'setupImages' => ['nullable', 'array', 'min:1'],
+            'setupImages.*' => 'image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+            $files = $request->file('setupImages');
+
+            if (!$files) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No files uploaded'
+                ], 400);
+            }
+
+            $existingImages = $type->setupImages ?? [];
+
+            foreach ($request->file('setupImages') as $file) {
+                $path = $file->store('types', 'public');
+                $existingImages[] = $path;
+            }
+
+            $type->update([
+                'setupImages' => $existingImages,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Image Added Successfully!'
+            ], 201);
+    }
+
     public function edit(Request $request, $slug) {
         $type = Type::where('slug', $slug);
 
@@ -132,7 +167,7 @@ class TypeController extends Controller
         if($type) {
             $images = $type->setupImages;
 
-            if(!isset($Images[$index])) {
+            if(!isset($images[$index])) {
                 return response()->json([
                     'success' => false,
                     'message' => 'No Image Found!'
