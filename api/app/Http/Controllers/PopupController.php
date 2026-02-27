@@ -44,14 +44,13 @@ class PopupController extends Controller
     public function edit($id, Request $request) {
         $popup = Popup::findOrFail($id);
         
-        if($popup) {
-            if ($popup->image && Storage::disk('public')->exists($popup->image)) {
-                Storage::disk('public')->delete($popup->image);
-            }
-            
             $validatedData = [
                 'image' => 'image|mimes:jpeg,jpg,png|max:2048'
             ];
+
+            if ($popup->image && Storage::disk('public')->exists($popup->image)) {
+                Storage::disk('public')->delete($popup->image);
+            }
 
 
             $path = $request->image->store('popup', 'public');
@@ -63,7 +62,6 @@ class PopupController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Image Updated Successfully!'
-            ]);
-        }
+            ], 201);
     }
 }

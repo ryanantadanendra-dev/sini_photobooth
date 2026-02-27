@@ -30,9 +30,9 @@ Route::put('dashboard/blogs/edit/image/{slug}', [BlogController::class, 'editIma
 // PORTFOLIOS
 Route::get('/dashboard/portfolios', [PortfolioController::class, 'get']);
 Route::post('/dashboard/portfolio/add', [PortfolioController::class, 'store']);
-Route::delete('dashboard/portfolio/delete/{slug}', [PortfolioController::class, 'destroy']);
+Route::delete('dashboard/portfolio/delete/{id}', [PortfolioController::class, 'destroy']);
 
 // POPUP
 Route::get('/dashboard/popup', [PopupController::class, 'get']);
 Route::post('/dashboard/popup/add', [PopupController::class, 'store']);
-Route::put('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);
+Route::post('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);

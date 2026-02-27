@@ -47,20 +47,13 @@ class PortfolioController extends Controller
     public function destroy($id) {
         $portfolio = Portfolio::findOrFail($id);
 
-        if($portfolio) {
-            Storage::disk('public')->delete($portfolio->image);
+        Storage::disk('public')->delete($portfolio->image);
 
-            $portfolio->delete();
+        $portfolio->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Image Deleted Successfully'
-            ], 201);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data Not Found!'
-            ], 404);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Image Deleted Successfully'
+        ], 201);
     }
 }
