@@ -1,151 +1,127 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import Swal from 'sweetalert2'
 import Image from 'next/image'
 
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg']
+const MAX_FILE_SIZE = 2 * 1024 * 1024
+const ADD_TITLES = ['Add Blog', 'Add Type', 'Add Data']
+const MULTI_FILE_INPUTS = ['setupImages', 'images']
+
 const Form = ({ title, inputs, data, handle }) => {
+    const isAddForm = ADD_TITLES.includes(title)
+
     const [preview, setPreview] = useState(
         data?.image
-            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`
+            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data.image}`
             : null,
     )
+
     const fileRef = useRef(null)
 
-    const [formData, setFormData] = useState(
+    const [formData, setFormData] = useState(() =>
         inputs?.reduce((acc, input) => {
             acc[input] = data
                 ? data[input]
-                : input == 'image'
+                : input === 'image'
                   ? null
-                  : input == 'setupImages'
+                  : MULTI_FILE_INPUTS.includes(input)
                     ? []
                     : ''
-
             return acc
         }, {}),
     )
 
-    const handleFileChange = e => {
+    const handleFileChange = useCallback(e => {
         const file = e.target.files[0]
+        if (!file) return
 
-        if (file) {
-            const imageUrl = URL.createObjectURL(file)
-            setPreview(imageUrl)
-            setFormData({
-                ...formData,
-                image: file,
-            })
-        }
-    }
+        setPreview(URL.createObjectURL(file))
+        setFormData(prev => ({ ...prev, image: file }))
+    }, [])
 
-    const handleChange = e => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        })
-    }
+    const handleChange = useCallback(e => {
+        const { name, value } = e.target
+        setFormData(prev => ({ ...prev, [name]: value }))
+    }, [])
 
-    const handleFilesChange = e => {
-        const files = Array.from(e.target.files)
-        const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg']
+    const handleFilesChange = useCallback(
+        e => {
+            const files = Array.from(e.target.files)
 
-        const isValid = files.every(file => ALLOWED_TYPES.includes(file.type))
+            const invalidType = files.some(
+                f => !ALLOWED_IMAGE_TYPES.includes(f.type),
+            )
+            const invalidSize = files.some(f => f.size > MAX_FILE_SIZE)
 
-        if (!isValid) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File Must Be JPG, JPEG, Or PNG',
-            })
-
-            e.target.value = null
-
-            setFormData({
-                ...formData,
-                setupImages: [],
-            })
-        }
-
-        if (files?.some(file => file.size > 2 * 1024 * 1024)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File Must Be Under 2mb',
-            })
-
-            e.target.value = null
-
-            setFormData({
-                ...formData,
-                setupImages: [],
-            })
-        }
-
-        if (files) {
-            if (title === 'Add Data') {
-                setFormData({
-                    ...formData,
-                    images: files,
+            if (invalidType || invalidSize) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: invalidType
+                        ? 'File must be JPG, JPEG, or PNG'
+                        : 'File must be under 2MB',
                 })
-            } else {
-                setFormData({
-                    ...formData,
-                    setupImages: files,
-                })
+                e.target.value = null
+                setFormData(prev => ({ ...prev, setupImages: [] }))
+                return
             }
+
+            const key = title === 'Add Data' ? 'images' : 'setupImages'
+            setFormData(prev => ({ ...prev, [key]: files }))
+        },
+        [title],
+    )
+
+    const handleSubmit = e => {
+        if (isAddForm) {
+            handle(e, formData, setFormData)
+        } else {
+            handle(e, data?.slug, formData, setFormData, fileRef)
         }
     }
 
     return (
-        <form
-            onSubmit={e =>
-                title == 'Add Blog' ||
-                title == 'Add Type' ||
-                title == 'Add Data'
-                    ? handle(e, formData, setFormData)
-                    : handle(e, data?.slug, formData, fileRef)
-            }>
+        <form onSubmit={handleSubmit}>
             <h2 className="text-2xl font-bold text-center">{title}</h2>
-            <figure
-                className={`${title == 'Edit Image' ? 'visible w-56 h-56 relative mx-auto' : 'invisible w-0 h-0'}`}>
-                <Image
-                    src={
-                        preview
-                            ? preview
-                            : `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`
-                    }
-                    alt="Uploaded Image"
-                    fill
-                    className="object-cover"
-                />
-            </figure>
+
+            {title === 'Edit Image' && (
+                <figure className="w-56 h-56 relative mx-auto">
+                    <Image
+                        src={
+                            preview ??
+                            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`
+                        }
+                        alt="Uploaded Image"
+                        fill
+                        className="object-cover"
+                    />
+                </figure>
+            )}
+
             <ul>
-                {inputs?.map((i, index) => (
+                {inputs?.map(i => (
                     <li className="flex mt-4" key={i}>
-                        <label className="w-32" htmlFor="name">
+                        <label className="w-32" htmlFor={i}>
                             {i}
                         </label>
-                        {i == 'image' || i == 'setupImages' || i == 'images' ? (
+
+                        {i === 'image' || MULTI_FILE_INPUTS.includes(i) ? (
                             <input
                                 type="file"
                                 ref={fileRef}
                                 name={i}
-                                multiple={
-                                    i == 'setupImages' || i == 'images'
-                                        ? true
-                                        : false
-                                }
+                                multiple={MULTI_FILE_INPUTS.includes(i)}
                                 onChange={
-                                    i == 'image'
+                                    i === 'image'
                                         ? handleFileChange
                                         : handleFilesChange
                                 }
                                 className="ms-3"
                             />
-                        ) : i == 'content' ? (
+                        ) : i === 'content' || i === 'description' ? (
                             <textarea
-                                type="text"
                                 name={i}
                                 value={formData[i]}
                                 onChange={handleChange}
@@ -162,17 +138,15 @@ const Form = ({ title, inputs, data, handle }) => {
                         )}
                     </li>
                 ))}
+
                 <li className="flex justify-center mt-4">
                     <button type="submit" className="px-10 py-5 bg-gray-200">
-                        {title == 'Add Blog' ||
-                        title == 'Add Type' ||
-                        title == 'Add Data'
-                            ? 'Add'
-                            : 'Edit'}
+                        {isAddForm ? 'Add' : 'Edit'}
                     </button>
                 </li>
             </ul>
         </form>
     )
 }
+
 export default Form

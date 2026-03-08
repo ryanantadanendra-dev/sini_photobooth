@@ -9,21 +9,23 @@ const BlogCards = () => {
     const sorted = blogs?.data.sort((a, b) => b.created_at - a.created_at)
 
     const displayData = sorted?.slice(0, 4).map((blog, index) => (
-        <div className="card-container w-56 h-80 bg-white">
-            <figure className="relative w-full h-32">
-                <Image
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${blog?.image}`}
-                    fill
-                    className="object-cover"
-                />
-            </figure>
-            <div className="flex flex-col justify-around h-44 px-2">
-                <h3 className="text-xl md:text-2xl text-black md:line-clamp-3 line-clamp-1">
-                    {blog?.title}
-                </h3>
-                <p className="md:text-lg text-[0.8rem]">{blog?.subtitle}</p>
-                <Link href="">Learn More!</Link>
+        <div class="card">
+            <div class="card-details">
+                <figure className="relative w-full h-40">
+                    <Image
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${blog?.image}`}
+                        alt={`${blog?.title} image`}
+                        fill
+                        className="object-cover"
+                        style={{ borderRadius: '20px' }}
+                    />
+                </figure>
+                <p class="text-title line-clamp-2 px-2 mt-2">{blog?.title}</p>
+                <p class="text-body line-clamp-1 px-2">{blog?.subtitle}</p>
             </div>
+            <Link href={`/blog/${blog?.slug}`} class="card-button">
+                More info
+            </Link>
         </div>
     ))
 

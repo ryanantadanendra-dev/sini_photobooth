@@ -97,7 +97,7 @@ const WAForm = () => {
                 <li>
                     <button
                         type="submit"
-                        className="w-28 h-12 text-white flex justify-center items-center"
+                        className="w-28 h-16 mt-5 ms-3 rounded-xl text-white flex justify-center items-center"
                         style={{
                             background: 'var(--color-secondary)',
                         }}>

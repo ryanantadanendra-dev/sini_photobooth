@@ -210,30 +210,6 @@ const TypesPage = () => {
         })
     }
 
-    const handleAddImage = async (e, slug, formData) => {
-        e.preventDefault()
-
-        try {
-            const result = await addImage(slug, formData)
-
-            if (result) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Image Added Successfully!',
-                })
-
-                setIsOpen(false)
-            }
-        } catch (error) {
-            Swal.fire({
-                title: 'Error!',
-                text: error.response.data.message,
-                icon: 'error',
-            })
-        }
-    }
-
     return (
         <div>
             <Header title="Types Page" />
@@ -273,7 +249,6 @@ const TypesPage = () => {
                         ]}
                         handleDelete={handleDelete}
                         handleDeleteImage={handleDeleteImage}
-                        handleAddImage={handleAddImage}
                     />
                 </div>
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>

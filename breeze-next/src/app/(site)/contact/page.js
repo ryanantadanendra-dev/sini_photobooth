@@ -10,8 +10,8 @@ const ContactPage = async () => {
                 title="Get In Touch"
                 subtitle="Contact us for further information about our services"
             />
-            <main className="mt-12 py-32">
-                <section className="w-screen hscreen grid grid-cols-2">
+            <main className="mt-12 lg:py-32 py-20">
+                <section className="w-screen lg:min-h-screen grid md:grid-cols-2 grid-cols-1">
                     <div className="px-12">
                         <h1 className="text-4xl text-black">Contact Us</h1>
                         <p>
@@ -20,8 +20,8 @@ const ContactPage = async () => {
                         </p>
                         <WAForm />
                     </div>
-                    <div>
-                        <div className="grid grid-cols-2 grid-rows-2">
+                    <div className="mt-16 md:mt-0 px-5">
+                        <div className="grid lg:grid-cols-2 lg:grid-rows-2 grid-cols-1">
                             <div>
                                 <h3 className="text-black">Contact Person</h3>
                                 <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ const ContactPage = async () => {
                                     <p className="mt-3">+621234567890</p>
                                 </div>
                             </div>
-                            <div>
+                            <div className="mt-5 md:mt-0">
                                 <h3 className="text-black">Email Us</h3>
                                 <div className="flex items-center gap-3">
                                     <svg
@@ -45,7 +45,7 @@ const ContactPage = async () => {
                                         viewBox="0 0 512 512"
                                         className="w-4">
                                         <path
-                                            fill="rgb(0, 0, 0)"
+                                            fill="#000000"
                                             d="M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z"
                                         />
                                     </svg>
@@ -54,7 +54,7 @@ const ContactPage = async () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="mt-4">
+                            <div className="mt-5">
                                 <h3 className="text-black">Location</h3>
                                 <div className="flex items-center gap-3">
                                     <svg
@@ -72,7 +72,7 @@ const ContactPage = async () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-16 pe-12">
+                        <div className="mt-16 md:pe-12">
                             <figure className="w-full h-64 relative">
                                 <Image
                                     src={Img}

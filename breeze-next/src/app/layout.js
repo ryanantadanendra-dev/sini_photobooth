@@ -1,21 +1,20 @@
-import { League_Spartan, Inter } from 'next/font/google'
+import { Inter, Josefin_Sans } from 'next/font/google'
 import '@/app/global.css'
-
-const leagueSpartan = League_Spartan({
-    subsets: ['latin'],
-    display: 'swap',
-    variable: '--font-league-spartan',
-})
 
 const inter = Inter({
     subsets: ['latin'],
     display: 'swap',
     variable: '--font-inter',
 })
+const josefin = Josefin_Sans({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-josefin',
+})
 
 const RootLayout = ({ children }) => {
     return (
-        <html lang="en" className={leagueSpartan.className}>
+        <html lang="en" className={`${inter.className} ${josefin.className}`}>
             <body className="antialiased">{children}</body>
         </html>
     )

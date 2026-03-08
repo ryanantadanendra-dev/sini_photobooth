@@ -42,7 +42,7 @@ const datas = [
 ]
 
 const Card = ({ data }) => (
-    <div className="card w-72 h-32 px-4 py-4">
+    <div className="w-72 h-32 px-4 py-4">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
@@ -61,7 +61,7 @@ const WhatYouGetPage = () => {
                 subtitle="Once you’ve selected your ideal setup, our team enhances every detail to create stunning, high-quality results. Let’s turn your moments into memories worth reliving."
             />
             <main>
-                <section className="py-32 px-12">
+                <section className="py-20 px-12">
                     <h2 className="text-3xl md:text-4xl text-center md:text-start font-bold text-black">
                         What You Will Get
                     </h2>
@@ -71,7 +71,7 @@ const WhatYouGetPage = () => {
                         ))}
                     </div>
                 </section>
-                <section className="py-12 lg:py-32">
+                <section className="py-12">
                     <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
                         Our Setup
                     </h2>
@@ -94,7 +94,7 @@ const WhatYouGetPage = () => {
                         </figure>
                     </div>
                 </section>
-                <section className="howitwork-section h-full py-12 lg:py-32">
+                <section className="howitwork-section h-full py-12">
                     <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
                         How It Workds
                     </h2>
@@ -113,7 +113,7 @@ const WhatYouGetPage = () => {
                         </figure>
                     </div>
                 </section>
-                <section className="result-sectoin w-screen h-full py-32 lg:py-32">
+                <section className="result-sectoin w-screen h-full py-32 lg:py-12">
                     <h2 className="text-center text-3xl md:text-4xl text-black font-bold">
                         Check Out Our Results
                     </h2>
@@ -131,7 +131,7 @@ const WhatYouGetPage = () => {
                         </p>
                     </div>
                 </section>
-                <section className="w-screen h-full">
+                <section className="w-screen h-full py-12">
                     <h2 className="text-center text-3xl md:text-4xl text-black font-bold">
                         Claim Your Photos!
                     </h2>

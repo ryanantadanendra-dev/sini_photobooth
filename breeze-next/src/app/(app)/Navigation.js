@@ -38,17 +38,17 @@ const Navigation = ({ user }) => {
                             Dashboard
                         </NavLink>
                         <NavLink
-                            href="/dashboard"
+                            href="/dashboard/types"
                             active={usePathname() === '/dashboard/types'}>
                             Types
                         </NavLink>
                         <NavLink
-                            href="/dashboard"
+                            href="/dashboard/blogs"
                             active={usePathname() === '/dashboard/blogs'}>
                             Blogs
                         </NavLink>
                         <NavLink
-                            href="/dashboard"
+                            href="/dashboard/portfolios"
                             active={usePathname() === '/dashboard/portfolios'}>
                             Portfolios
                         </NavLink>
@@ -98,17 +98,17 @@ const Navigation = ({ user }) => {
                                 Dashboard
                             </NavLink>
                             <NavLink
-                                href="/dashboard"
+                                href="/dashboard/types"
                                 active={usePathname() === '/dashboard/types'}>
                                 Types
                             </NavLink>
                             <NavLink
-                                href="/dashboard"
+                                href="/dashboard/blogs"
                                 active={usePathname() === '/dashboard/blogs'}>
                                 Blogs
                             </NavLink>
                             <NavLink
-                                href="/dashboard"
+                                href="/dashboard/portfolios"
                                 active={
                                     usePathname() === '/dashboard/portfolios'
                                 }>

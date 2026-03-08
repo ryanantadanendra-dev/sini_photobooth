@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class PopupController extends Controller
 {
     public function get() {
-        $popup = Popup::where('id', 1)->firstOrFail();
+        $popup = Popup::firstOrFail();
 
         return response()->json([
             'success' => true,

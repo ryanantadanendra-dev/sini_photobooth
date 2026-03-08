@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Chatty from '@/components/Chatty'
 import Socials from '@/components/Socials'
+import Footer from '@/components/Footer'
 
 const UserLayout = ({ children }) => {
     return (
@@ -12,6 +13,8 @@ const UserLayout = ({ children }) => {
                 <Socials />
                 <Chatty />
             </div>
+
+            <Footer />
         </div>
     )
 }

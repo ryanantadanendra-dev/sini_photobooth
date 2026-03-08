@@ -1,3 +1,5 @@
+import StyledLink from './StyledLink'
+
 const CTA = () => {
     return (
         <section
@@ -10,12 +12,8 @@ const CTA = () => {
                 Contact Us For Further Information
             </p>
             <div className="flex gap-10 mt-10">
-                <button className="md:px-8 px-6 md:py-5 py-4 rounded-2xl text-white transition-all duration-300 ease-out bg-[#a0221c] hover:bg-[#7e1a16] hover:scale-95">
-                    WhatsApp
-                </button>
-                <button className="md:px-8 px-6 md:py-5 py-4 rounded-2xl text-white transition-colors duration-300 ease-out bg-[#a0221c] hover:bg-[#7e1a16] hover:scale-95">
-                    Photobooth Types
-                </button>
+                <StyledLink text="Whatsapp" link="" />
+                <StyledLink text="Photobooth Types" link="/services" />
             </div>
         </section>
     )

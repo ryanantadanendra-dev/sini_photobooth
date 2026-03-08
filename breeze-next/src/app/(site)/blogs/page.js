@@ -5,24 +5,22 @@ import Link from 'next/link'
 
 const Card = ({ data }) => {
     return (
-        <div className="w-56 h-52">
-            <figure className="relative w-full h-32">
-                <Image
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`}
-                    alt={`${data?.title} image`}
-                    fill
-                    className="object-cover"
-                />
-            </figure>
-            <div className="h-full flex flex-col justify-around">
-                <h2 className="text-black mt-3 line-clamp-2">{data?.title}</h2>
-                <p>{data?.subtitle}</p>
-                <Link
-                    href={`/blog/${data?.slug}`}
-                    className="text-sky-500 hover:underline">
-                    Read More {`>>>`}
-                </Link>
+        <div class="card">
+            <div class="card-details">
+                <figure className="relative w-full h-40">
+                    <Image
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`}
+                        fill
+                        className="object-cover"
+                        style={{ borderRadius: '20px' }}
+                    />
+                </figure>
+                <p class="text-title line-clamp-2 px-2 mt-2">{data?.title}</p>
+                <p class="text-body line-clamp-1 px-2">{data?.subtitle}</p>
             </div>
+            <Link href={`/blog/${data?.slug}`} class="card-button">
+                More info
+            </Link>
         </div>
     )
 }
@@ -38,7 +36,7 @@ const BlogsPage = async () => {
                     subtitle="Stay inspired with insights, tips, and creative ideas to make every event unforgettable."
                 />
             </header>
-            <main className="px-12 py-12">
+            <main className="min-h-screen md:min-h-full px-12 py-12">
                 <div className="flex justify-center gap-36 md:gap-32 lg:gap-12 flex-wrap">
                     {blogs?.data.map((blog, index) => (
                         <Card data={blog} />

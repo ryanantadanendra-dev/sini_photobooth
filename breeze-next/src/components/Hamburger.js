@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import NavLink from './NavLink'
@@ -20,24 +22,33 @@ const Hamburger = ({ isOpen, setIsOpen, goToSection, slugify }) => {
             style={{
                 background: 'var(--color-secondary)',
                 height: isExtended
-                    ? `${(types?.data.length + 5) * 44.8}px`
-                    : '224px',
+                    ? `${(types?.data.length + 6) * 44.8}px`
+                    : '268.8px',
             }}>
             <div className="link-wrapper">
                 <div className="link-wrapper h-[44.8px] text-white hover:bg-white hover:text-black flex items-center">
-                    <NavLink active={usePathname() === '/'} href="/">
+                    <Link
+                        active={usePathname() === '/'}
+                        href="/"
+                        onClick={() => setIsOpen(false)}
+                        className="w-full ms-3">
                         Home
-                    </NavLink>
+                    </Link>
                 </div>
                 <div
                     className="link-wrapper h-[44.8px] text-white hover:bg-white hover:text-black flex items-center gap-1"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}>
-                    <Link href="/services" className="ms-3">
+                    <Link
+                        href="/services"
+                        onClick={() => setIsOpen(false)}
+                        className="ms-3">
                         Photobooth Types
                     </Link>
                     <svg
-                        onClick={() => setIsExtended(!isExtended)}
+                        onClick={() => {
+                            setIsExtended(!isExtended)
+                        }}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512"
                         className="w-3">
@@ -67,24 +78,39 @@ const Hamburger = ({ isOpen, setIsOpen, goToSection, slugify }) => {
                 )}
                 <div
                     className={`link-wrapper h-[44.8px] text-white hover:bg-white hover:text-black flex items-center`}>
-                    <NavLink
+                    <Link
                         active={usePathname() === '/what-you-get'}
                         href="/what-you-get"
-                        className="ms-3">
+                        onClick={() => setIsOpen(false)}
+                        className="ms-3 w-full">
                         What You Get?
-                    </NavLink>
+                    </Link>
                 </div>
                 <div
                     className={`link-wrapper h-[44.8px] text-white hover:bg-white hover:text-black flex items-center`}>
-                    <NavLink
+                    <Link
                         active={usePathname() === '/blogs'}
                         href="/blogs"
-                        className="ms-3">
+                        onClick={() => setIsOpen(false)}
+                        className="ms-3 w-full">
                         Blogs
-                    </NavLink>
+                    </Link>
+                </div>
+                <div
+                    className={`link-wrapper h-[44.8px] text-white hover:bg-white hover:text-black flex items-center`}>
+                    <Link
+                        active={usePathname() === '/portfolios'}
+                        href="/portfolios"
+                        onClick={() => setIsOpen(false)}
+                        className="ms-3 w-full">
+                        Events Portfolio
+                    </Link>
                 </div>
                 <div className="link-wrapper h-[44.8px] text-white hover:bg-white hover:text-black flex items-center">
-                    <Link href="/contact" className="ms-3">
+                    <Link
+                        href="/contact"
+                        onClick={() => setIsOpen(false)}
+                        className="ms-3 w-full">
                         Contact
                     </Link>
                 </div>

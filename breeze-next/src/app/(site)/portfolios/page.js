@@ -30,7 +30,7 @@ const PortfoliosPage = async () => {
                 />
             </header>
             <main>
-                <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[180px] gap-2 px-12 mt-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[180px] gap-2 px-12 mt-10 py-12">
                     {portfolios?.data.length > 0 ? (
                         portfolios?.data.map((image, index) => {
                             const spanClass = getSpanClass(index)

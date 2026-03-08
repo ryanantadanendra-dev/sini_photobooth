@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import CTA from '@/components/CTA'
 import Divider from '@/components/Divider'
+import StyledLink from '@/components/StyledLink'
 
 const ServicesPage = async () => {
     const { types } = await getTypes()
@@ -24,19 +25,21 @@ const ServicesPage = async () => {
                     </p>
                     <div className="flex justify-center flex-wrap gap-12 mt-10">
                         {types?.data.map((type, index) => (
-                            <figure className="w-72 h-56">
-                                <div className="relative w-full h-48 overflow-hidden rounded-2xl">
-                                    <Image
-                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.image}`}
-                                        alt={`${type?.name} image`}
-                                        fill
-                                        className="object-cover hover:scale-110 transition-all duration-100 ease-out"
-                                    />
-                                </div>
-                                <figcaption className="text-center text-2xl mt-3">
-                                    {type?.name}
-                                </figcaption>
-                            </figure>
+                            <Link href={`/service/${type?.slug}`}>
+                                <figure className="w-72 h-56">
+                                    <div className="relative w-full h-48 overflow-hidden rounded-2xl">
+                                        <Image
+                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.image}`}
+                                            alt={`${type?.name} image`}
+                                            fill
+                                            className="object-cover hover:scale-110 transition-all duration-100 ease-out"
+                                        />
+                                    </div>
+                                    <figcaption className="text-center text-2xl mt-3">
+                                        {type?.name}
+                                    </figcaption>
+                                </figure>
+                            </Link>
                         ))}
                     </div>
                 </section>
@@ -49,14 +52,7 @@ const ServicesPage = async () => {
                         Get in thouch with one of our professional photographer
                         with lots of experience
                     </p>
-                    <Link
-                        href=""
-                        className="mt-5 px-6 md:px-8 py-4 md:py-5 rounded-2xl transition-all duration-150 ease-out hover:scale-95 bg-[#a0221c] hover:bg-[#7e1a16]"
-                        style={{
-                            color: 'var(--color-primary)',
-                        }}>
-                        Get In Touch
-                    </Link>
+                    <StyledLink text="Get In Touch" link="" />
                 </section>
                 <Divider
                     title="Instant Sharing & Digital Gallery"

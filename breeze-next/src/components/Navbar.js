@@ -58,7 +58,7 @@ const ChevronIcon = ({ isOpen }) => (
 )
 
 const Navbar = () => {
-    const isMobile = useIsMobile(500)
+    const isMobile = useIsMobile(640)
     const [isOpen, setIsOpen] = useState(false)
     const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false)
     const router = useRouter()
@@ -214,7 +214,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 active={usePathname === '/what-you-get'}
-                                href="/contact"
+                                href="/what-you-get"
                                 className="text-black hover:text-[#DFAE74] transition-colors">
                                 What You Get?
                             </NavLink>
@@ -225,6 +225,14 @@ const Navbar = () => {
                                 href="/contact"
                                 className="text-black hover:text-[#DFAE74] transition-colors">
                                 Contact
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                active={usePathname === '/portfolios'}
+                                href="/portfolios"
+                                className="text-black hover:text-[#DFAE74] transition-colors">
+                                Events Portfolio
                             </NavLink>
                         </li>
                         <li>
