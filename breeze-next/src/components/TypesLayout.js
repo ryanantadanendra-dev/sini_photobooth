@@ -17,6 +17,8 @@ const TypesLayout = () => {
                             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.image}`}
                             alt={`${type?.name} image`}
                             fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            loading="lazy"
                             className="object-cover"
                         />
                     </figure>

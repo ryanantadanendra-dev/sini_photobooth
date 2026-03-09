@@ -16,6 +16,47 @@ import PropImg2 from '../../../../public/Assets/property2.jpg'
 import CTA from '@/components/CTA'
 import Divider from '@/components/Divider'
 
+export const metadata = {
+    title: 'Apa Saja Yang Kamu Dapatkan? - What You Will Get | Sini Photobooth',
+    description:
+        'Apa saja hal-hal yang akan kalian dapatkan jika menggunakan jasa kami. What you will get if you choose us',
+    openGraph: {
+        title: 'Apa Saja Yang Kamu Dapatkan? - What You Will Get | Sini Photobooth',
+        description:
+            'Apa saja hal-hal yang akan kalian dapatkan jika menggunakan jasa kami. What you will get if you choose us',
+        siteName: 'siniphotobooth.com',
+        locale: 'id_ID',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Apa Saja Yang Kamu Dapatkan? - What You Will Get | Sini Photobooth',
+        description:
+            'Apa saja hal-hal yang akan kalian dapatkan jika menggunakan jasa kami. What you will get if you choose us',
+        creator: '@siniphotoboothgroup',
+        images: [
+            {
+                url: '../../../public/Assets/Logo.png',
+                width: 1200,
+                height: 630,
+                alt: 'Sini Photobooth Logo',
+            },
+        ],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-snippet': -1,
+            'max-image-preview': 'large',
+            'max-video-preview': -1,
+        },
+    },
+}
+
 const carouselImages = [Carousel1, Carousel2, Carousel3]
 
 const datas = [
@@ -75,6 +116,11 @@ const WhatYouGetPage = () => {
                     <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
                         Our Setup
                     </h2>
+                    <p className="text-center text-[0.8rem] px-12 md:px-32 lg:px-96">
+                        Take a closer look at the premium equipment, lighting,
+                        and backdrops that bring your photobooth moments to
+                        life.
+                    </p>
                     <div className="flex flex-wrap justify-center mt-8 gap-4">
                         <figure className="relative w-72 h-[30rem]">
                             <Image
@@ -96,8 +142,12 @@ const WhatYouGetPage = () => {
                 </section>
                 <section className="howitwork-section h-full py-12">
                     <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
-                        How It Workds
+                        How It Works?
                     </h2>
+                    <p className="text-center text-[0.8rem] px-12 md:px-32 lg:px-96">
+                        Watch how our photobooth works and see how easy it is
+                        for guests to capture fun and memorable moments
+                    </p>
                     <div className="flex flex-col items-center mt-10">
                         <figure className="relative md:w-[30rem] w-[20rem] h-80 rounded-3xl">
                             <iframe
@@ -114,15 +164,19 @@ const WhatYouGetPage = () => {
                     </div>
                 </section>
                 <section className="result-sectoin w-screen h-full py-32 lg:py-12">
-                    <h2 className="text-center text-3xl md:text-4xl text-black font-bold">
+                    <h2 className="text-center text-2xl md:text-4xl text-black font-bold">
                         Check Out Our Results
                     </h2>
-                    <div className="flex flex-col items-center justify-center w-screen gap-1 md:gap-5 mt-5 px-8 md:px-0">
+                    <p className="md:px-32 lg:px-72 px-12 text-[0.8rem] md:text-lg text-center">
+                        See the fun, laughter, and unforgettable moments
+                        captured through our photobooth experiences.
+                    </p>
+                    <div className="flex flex-col items-center justify-center w-screen gap-1 md:gap-5 mt-12 px-8 md:px-0">
                         <Carousel datas={carouselImages} />
                         <h3 className="text-2xl md:text-3xl font-bold text-black">
                             Photos
                         </h3>
-                        <p className="text-center md:px-32 lg:px-72">
+                        <p className="text-center text-[0.8rem] md:text-lg md:px-32 lg:px-72">
                             Photo print dan Photo digital ! Setelah foto, para
                             tamu akan mendapatkan hasil cetak foto mereka dan
                             file digital foto mereka secara langsung, lengkap
@@ -189,11 +243,11 @@ const WhatYouGetPage = () => {
                     imgLink="/Assets/carousel1.jpg"
                 />
                 <section className="w-screen h-full flex flex-col-reverse md:flex-row justify-center gap-10 mt-32">
-                    <div className="md:w-1/2 w-full md:ps-32 px-8 md:px-0 pt-12">
-                        <h2 className="text-3xl text-black">
+                    <div className="md:w-1/2 w-full md:ps-12 lg:ps-32 px-8 md:px-0 pt-12">
+                        <h2 className="text-2xl md:text-3xl text-black">
                             Choose Your Layouts
                         </h2>
-                        <p className="mt-5">
+                        <p className="mt-5 text-[0.8rem] md:text-lg">
                             You can choose your desired layout once after you
                             finished booking our services. Choose your layout
                             that suits your needs
@@ -221,22 +275,22 @@ const WhatYouGetPage = () => {
                             />
                         </figure>
                     </div>
-                    <div className="md:w-1/2 w-full px-8 md:px-0 md:pe-32 pt-12">
-                        <h2 className="text-3xl text-black">
+                    <div className="md:w-1/2 w-full px-8 md:px-0 md:pe-12 lg:pe-32 pt-12">
+                        <h2 className="text-2xl md:text-3xl text-black">
                             Choose Or Custom Your Inframe Design
                         </h2>
-                        <p className="mt-5">
+                        <p className="mt-5 text-[0.8rem] md:text-lg">
                             After seleting layout, you may choose or even custom
                             your desired infram designs
                         </p>
                     </div>
                 </section>
                 <section className="w-screen h-full py-32">
-                    <h2 className="text-center text-3xl md:text-4xl text-black font-bold lg:px-72">
+                    <h2 className="text-center text-2xl md:text-4xl text-black font-bold px-4 md:px-32 lg:px-72">
                         Light Up Your Moment With Cute Properties That We
                         Provide
                     </h2>
-                    <p className="text-center text-[1rem] md:text-lg">
+                    <p className="text-center text-[0.8rem] md:text-lg px-8 md:px-32 lg:px-72">
                         We provide various kinds of property starting from
                         hilarious, cool, mysterious, and much more!
                     </p>

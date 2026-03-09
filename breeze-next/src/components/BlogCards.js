@@ -16,8 +16,10 @@ const BlogCards = () => {
                         src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${blog?.image}`}
                         alt={`${blog?.title} image`}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        loading="lazy"
                         className="object-cover"
-                        style={{ borderRadius: '20px' }}
+                        style={{ borderRadius: '18px' }}
                     />
                 </figure>
                 <p class="text-title line-clamp-2 px-2 mt-2">{blog?.title}</p>

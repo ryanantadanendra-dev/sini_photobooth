@@ -5,7 +5,7 @@ const CTA = () => {
         <section
             className="CTA w-screen h-96 flex flex-col justify-center items-center text-black mt-12"
             style={{ background: 'var(--color-primary)' }}>
-            <h2 className="text-center text-3xl md:text-4xl font-bold lg:px-56 text-black">
+            <h2 className="text-center px-12 md:px-32 text-2xl md:text-4xl font-bold lg:px-56 text-black">
                 Ready To Save Your Moments, Memories, and Celebrations?
             </h2>
             <p className="text-center text-lg md:text-xl mt-5">

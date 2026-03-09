@@ -8,7 +8,73 @@ import Popup from '@/components/Popup'
 import getPopup from '@/lib/getPopup'
 import StyledLink from '@/components/StyledLink'
 
-export const metadata = { title: 'Laravel' }
+export const metadata = {
+    title: 'Sewa Photobooth Bali — Premium Photo Booth Rental | Sini Photobooth',
+    description:
+        'Sewa photobooth terbaik di Bali untuk pernikahan, ulang tahun & corporate event. Premium photo booth with instant print, digital gallery & QR sharing.',
+    keywords: [
+        'sewa photobooth',
+        'rental photobooth',
+        'photobooth pernikahan',
+        'photobooth ulang tahun',
+        'photobooth wisuda',
+        'photobooth acara',
+        'sewa photobooth murah',
+        'jasa photobooth',
+        'photobooth digital',
+        'booth foto',
+
+        'photo booth rental',
+        'photobooth wedding',
+        '360 photo booth',
+        'sewa 360 photo booth',
+        'mirror photobooth',
+
+        'sewa photobooth Bali',
+        'sewa photobooth Denpasar',
+        'photobooth Bali',
+        'photo booth Bali',
+        'photobooth cetak langsung',
+        'photobooth instant print',
+        'photobooth QR code',
+        'photobooth props',
+    ],
+    openGraph: {
+        title: 'Sewa Photobooth Bali — Premium Photo Booth Rental | Sini Photobooth',
+        description:
+            'Sewa photobooth terbaik di Bali untuk pernikahan, ulang tahun & corporate event. Premium photo booth with instant print, digital gallery & QR sharing.',
+        siteName: 'siniphotobooth.com',
+        locale: 'id_ID',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Sewa Photobooth Bali — Premium Photo Booth Rental | Sini Photobooth',
+        description:
+            'Sewa photobooth terbaik di Bali untuk pernikahan, ulang tahun & corporate event. Premium photo booth with instant print, digital gallery & QR sharing.',
+        creator: '@siniphotoboothgroup',
+        images: [
+            {
+                url: '../../../public/Assets/Logo.png',
+                width: 1200,
+                height: 630,
+                alt: 'Sini Photobooth Logo',
+            },
+        ],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-snippet': -1,
+            'max-image-preview': 'large',
+            'max-video-preview': -1,
+        },
+    },
+}
 
 const testimonials = [
     {
@@ -148,6 +214,7 @@ const Home = async () => {
                             alt={alt}
                             fill
                             priority
+                            sizes="(max-width: 768px) 100vw, 33vw"
                             className="object-cover"
                         />
                     </figure>
@@ -184,6 +251,8 @@ const Home = async () => {
                             src={Image1}
                             alt="Why Choose Us"
                             fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            loading="lazy"
                             className="object-cover"
                         />
                     </figure>

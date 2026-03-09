@@ -3,6 +3,47 @@ import { getBlogs } from '@/lib/useBlogs'
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata = {
+    title: 'Dapatkan Info Terkini Dari Dunia Photobooth - Get The Latest Articles About Photobooth | Sini Photobooth',
+    description:
+        'Dapatkan informasi terupdate dari dunia photobooth melalui halaman blog kami. Get the latest information about photobooth through our blog page',
+    openGraph: {
+        title: 'Dapatkan Info Terkini Dari Dunia Photobooth - Get The Latest Articles About Photobooth | Sini Photobooth',
+        description:
+            'Dapatkan informasi terupdate dari dunia photobooth melalui halaman blog kami. Get the latest information about photobooth through our blog page',
+        siteName: 'siniphotobooth.com',
+        locale: 'id_ID',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Dapatkan Info Terkini Dari Dunia Photobooth - Get The Latest Articles About Photobooth | Sini Photobooth',
+        description:
+            'Dapatkan informasi terupdate dari dunia photobooth melalui halaman blog kami. Get the latest information about photobooth through our blog page',
+        creator: '@siniphotoboothgroup',
+        images: [
+            {
+                url: '../../../public/Assets/Logo.png',
+                width: 1200,
+                height: 630,
+                alt: 'Sini Photobooth Logo',
+            },
+        ],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-snippet': -1,
+            'max-image-preview': 'large',
+            'max-video-preview': -1,
+        },
+    },
+}
+
 const Card = ({ data }) => {
     return (
         <div class="card">
@@ -12,7 +53,7 @@ const Card = ({ data }) => {
                         src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`}
                         fill
                         className="object-cover"
-                        style={{ borderRadius: '20px' }}
+                        style={{ borderRadius: '18px' }}
                     />
                 </figure>
                 <p class="text-title line-clamp-2 px-2 mt-2">{data?.title}</p>

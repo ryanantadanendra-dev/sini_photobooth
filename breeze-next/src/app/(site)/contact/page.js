@@ -3,6 +3,47 @@ import WAForm from '@/components/WAForm'
 import Image from 'next/image'
 import Img from '../../../../public/Assets/Image1.jpg'
 
+export const metadata = {
+    title: 'Hubungi Kami Untuk Informasi Selengkapnya - Contact Us For Further Information | Sini Photobooth',
+    description:
+        'Hubungi kami via Whatsapp untuk menanyakan informasi mengenai jasa kami. Contact us via Whatsapp to know more about our services',
+    openGraph: {
+        title: 'Hubungi Kami Untuk Informasi Selengkapnya - Contact Us For Further Information | Sini Photobooth',
+        description:
+            'Hubungi kami via Whatsapp untuk menanyakan informasi mengenai jasa kami. Contact us via Whatsapp to know more about our services',
+        siteName: 'siniphotobooth.com',
+        locale: 'id_ID',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Hubungi Kami Untuk Informasi Selengkapnya - Contact Us For Further Information | Sini Photobooth',
+        description:
+            'Hubungi kami via Whatsapp untuk menanyakan informasi mengenai jasa kami. Contact us via Whatsapp to know more about our services',
+        creator: '@siniphotoboothgroup',
+        images: [
+            {
+                url: '../../../public/Assets/Logo.png',
+                width: 1200,
+                height: 630,
+                alt: 'Sini Photobooth Logo',
+            },
+        ],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-snippet': -1,
+            'max-image-preview': 'large',
+            'max-video-preview': -1,
+        },
+    },
+}
+
 const ContactPage = async () => {
     return (
         <>
@@ -26,6 +67,7 @@ const ContactPage = async () => {
                                 <h3 className="text-black">Contact Person</h3>
                                 <div className="flex items-center gap-3">
                                     <svg
+                                        aria-label="Phone Icon"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 512 512"
                                         className="w-4">
@@ -41,6 +83,7 @@ const ContactPage = async () => {
                                 <h3 className="text-black">Email Us</h3>
                                 <div className="flex items-center gap-3">
                                     <svg
+                                        aria-label="Envelope Icon"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 512 512"
                                         className="w-4">
@@ -58,6 +101,7 @@ const ContactPage = async () => {
                                 <h3 className="text-black">Location</h3>
                                 <div className="flex items-center gap-3">
                                     <svg
+                                        aria-label="Location Icon"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 384 512"
                                         className="w-4">
@@ -77,7 +121,9 @@ const ContactPage = async () => {
                                 <Image
                                     src={Img}
                                     alt="Contact Page"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                     fill
+                                    loading="lazy"
                                     className="object-cover"
                                 />
                             </figure>
