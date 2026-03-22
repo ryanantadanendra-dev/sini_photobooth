@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Image1 from '../../../public/Assets/Image1.jpg'
-import Image2 from '../../../public/Assets/Image2.jpg'
+import Image1 from '../../../public/Assets/hero3.png'
+import Image2 from '../../../public/Assets/hero4.png'
+import Image3 from '../../../public/Assets/Image1.jpg'
 import TypesLayout from '@/components/TypesLayout'
 import BlogCards from '@/components/BlogCards'
 import Popup from '@/components/Popup'
@@ -227,11 +228,11 @@ const Home = async () => {
             </div>
 
             {/* Why Choose Us */}
-            <section className="whychooseus-section w-full min-h-screen md:min-h-full lg:min-h-screen py-32">
-                <h2 className="font-bold text-3xl md:text-4xl text-center text-black">
+            <section className="whychooseus-section w-full min-h-screen md:min-h-full lg:min-h-screen py-32  md:px-0">
+                <h2 className="font-bold text-2xl md:text-4xl text-center text-black">
                     Why Choose Us?
                 </h2>
-                <p className="text-center md:px-12 lg:px-96 text-[1rem]">
+                <p className="text-center md:px-12 lg:px-96 text-[0.8rem] md:text-[1rem] px-12 md:px-32">
                     Discover why clients trust our photobooth services to bring
                     fun, quality photos, and unforgettable memories
                 </p>
@@ -239,7 +240,7 @@ const Home = async () => {
                     <div className="flex flex-col gap-2">
                         <WhyCard
                             {...whyCards[0]}
-                            className="lg:w-80 w-80 md:w-56 md:ms-auto lg:ms-0"
+                            className="lg:w-80 w-80 md:w-64 md:ms-auto lg:ms-0"
                         />
                         <WhyCard
                             {...whyCards[1]}
@@ -248,7 +249,7 @@ const Home = async () => {
                     </div>
                     <figure className="relative w-80 md:w-56 lg:w-80 md:h-[28.5rem] h-[15rem]">
                         <Image
-                            src={Image1}
+                            src={Image3}
                             alt="Why Choose Us"
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
@@ -271,21 +272,21 @@ const Home = async () => {
 
             {/* Testimonials */}
             <section className="testimonial-section">
-                <div className="flex items-center gap-10 md:ps-8 lg:ps-20">
+                <div className="flex items-center gap-10 px-3 md:px-16 lg:px-20">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 384 512"
-                        className="w-20 md:w-32 rotate-45 opacity-50">
+                        className="w-16 md:w-32 rotate-45 opacity-50">
                         <path
                             fill="black"
                             d="M214.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 109.3V480c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
                         />
                     </svg>
                     <div>
-                        <h2 className="md:text-4xl text-3xl text-black">
+                        <h2 className="md:text-4xl text-2xl text-black">
                             What Other's Say?
                         </h2>
-                        <p className="font-normal text-xl md:text-2xl text-left">
+                        <p className="font-normal text-lg md:text-2xl text-left">
                             Real stories from clients who trust our work.
                         </p>
                     </div>
@@ -299,15 +300,15 @@ const Home = async () => {
 
             {/* Blogs */}
             <section className="blogs-section w-full h-full md:h-screen py-32">
-                <h2 className="text-center font-bold text-3xl md:text-4xl text-black">
+                <h2 className="text-center font-bold text-2xl md:text-4xl text-black px-12 md:px-32">
                     Check Out Our Latest Article
                 </h2>
-                <p className="text-center md:px-12 lg:px-96 text-[1rem]">
+                <p className="text-center lg:px-96 text-[0.8rem] md:text-[1rem] px-12 md:px-32">
                     Stay updated with our latest tips, event inspiration, and
                     insights to help you create unforgettable moments with a
                     photobooth.
                 </p>
-                <div className="flex justify-center gap-10 flex-wrap mt-20">
+                <div className="flex justify-center gap-8 md:gap-10 flex-wrap mt-20">
                     <BlogCards />
                 </div>
             </section>

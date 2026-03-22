@@ -120,7 +120,7 @@ const ServicePage = async ({ params }) => {
                         {type?.setupImages.map((image, index) => (
                             <figure
                                 key={image.id}
-                                className={`relative overflow-hidden rounded-2xl min-h-56 group m-0 ${getSpanClass(index)}`}>
+                                className={`relative overflow-hidden rounded-2xl min-h-72 group m-0 ${getSpanClass(index)}`}>
                                 <Image
                                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image}`}
                                     alt={`${type?.name} setup ${index + 1}`}
@@ -128,7 +128,7 @@ const ServicePage = async ({ params }) => {
                                     quality={75}
                                     loading="lazy"
                                     sizes={getSizes(index)}
-                                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                                 />
                                 <span className="absolute top-4 left-4 text-[10px] tracking-widest text-white/40 uppercase">
                                     {String(index + 1).padStart(2, '0')}

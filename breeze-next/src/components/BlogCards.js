@@ -11,7 +11,7 @@ const BlogCards = () => {
     const displayData = sorted?.slice(0, 4).map((blog, index) => (
         <div class="card">
             <div class="card-details">
-                <figure className="relative w-full h-40">
+                <figure className="relative w-full md:h-40 h-28">
                     <Image
                         src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${blog?.image}`}
                         alt={`${blog?.title} image`}
@@ -22,7 +22,9 @@ const BlogCards = () => {
                         style={{ borderRadius: '18px' }}
                     />
                 </figure>
-                <p class="text-title line-clamp-2 px-2 mt-2">{blog?.title}</p>
+                <p class="text-title  text-lg md:text-[1.5em] line-clamp-2 px-2 mt-2">
+                    {blog?.title}
+                </p>
                 <p class="text-body line-clamp-1 px-2">{blog?.subtitle}</p>
             </div>
             <Link href={`/blog/${blog?.slug}`} class="card-button">

@@ -48,7 +48,8 @@ const Popup = ({ popup }) => {
                 />
             </figure>
             <div
-                className={`overlay ${isVisible ? 'w-screen h-screen visited: opacity-100' : 'w-0 h-0 invisible opacity-0'} transition-all duration-150 ease-out  fixed top-0 z-50 bg-[#00000050]`}></div>
+                className={`overlay ${isVisible ? 'w-screen h-screen visited: opacity-100' : 'w-0 h-0 invisible opacity-0'} transition-all duration-0 ease-out  fixed top-0 z-50 bg-[#00000050]`}
+            />
         </>
     )
 }
