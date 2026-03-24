@@ -61,10 +61,10 @@ const ServicesPage = async () => {
             />
             <main>
                 <section className="py-12">
-                    <h2 className="text-center text-3xl md:text-4xl text-black">
+                    <h2 className="text-center text-2xl md:text-4xl text-black md:px-32 px-12">
                         Available Photobooth Types
                     </h2>
-                    <p className="text-center text-[1rem] md:text-lg">
+                    <p className="text-center text-[0.8rem] md:text-lg md:px-32 px-12">
                         Explore Our Photo Booth Collections
                     </p>
                     <div className="flex justify-center flex-wrap gap-12 mt-10">
@@ -98,10 +98,10 @@ const ServicesPage = async () => {
                 </section>
 
                 <section className="py-12 flex  flex-col items-center">
-                    <h2 className="text-black text-3xl md:text-4xl px-12 md:px-0 text-center md:text-start">
+                    <h2 className="text-black text-2xl md:text-4xl px-12 md:px-32 text-center md:text-start">
                         Looking For A Photographer?
                     </h2>
-                    <p className="text-[1rem] md:text-lg text-center md:text-start">
+                    <p className="text-[0.8rem] md:text-lg text-center md:text-start px-12 md:px-32">
                         Get in thouch with one of our professional photographer
                         with lots of experience
                     </p>

@@ -103,7 +103,7 @@ const WhatYouGetPage = () => {
             />
             <main>
                 <section className="py-20 px-12">
-                    <h2 className="text-3xl md:text-4xl text-center md:text-start font-bold text-black">
+                    <h2 className="text-2xl md:text-4xl text-center lg:text-start font-bold text-black">
                         What You Will Get
                     </h2>
                     <div className="flex justify-center gap-3 flex-wrap mt-8 px-10">
@@ -113,10 +113,10 @@ const WhatYouGetPage = () => {
                     </div>
                 </section>
                 <section className="py-12">
-                    <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold text-black">
                         Our Setup
                     </h2>
-                    <p className="text-center text-[0.8rem] px-12 md:px-32 lg:px-96">
+                    <p className="text-center text-[0.8rem] md:text-lg px-12 md:px-32 lg:px-96">
                         Take a closer look at the premium equipment, lighting,
                         and backdrops that bring your photobooth moments to
                         life.
@@ -141,10 +141,10 @@ const WhatYouGetPage = () => {
                     </div>
                 </section>
                 <section className="howitwork-section h-full py-12">
-                    <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
+                    <h2 className="text-center text-2xl md:text-4xl font-bold text-black">
                         How It Works?
                     </h2>
-                    <p className="text-center text-[0.8rem] px-12 md:px-32 lg:px-96">
+                    <p className="text-center text-[0.8rem] md:text-lg px-12 md:px-32 lg:px-96">
                         Watch how our photobooth works and see how easy it is
                         for guests to capture fun and memorable moments
                     </p>
@@ -173,7 +173,7 @@ const WhatYouGetPage = () => {
                     </p>
                     <div className="flex flex-col items-center justify-center w-screen gap-1 md:gap-5 mt-12 px-8 md:px-0">
                         <Carousel datas={carouselImages} />
-                        <h3 className="text-2xl md:text-3xl font-bold text-black">
+                        <h3 className="text-xl md:text-3xl font-bold text-black">
                             Photos
                         </h3>
                         <p className="text-center text-[0.8rem] md:text-lg md:px-32 lg:px-72">
@@ -186,10 +186,10 @@ const WhatYouGetPage = () => {
                     </div>
                 </section>
                 <section className="w-screen h-full py-12">
-                    <h2 className="text-center text-3xl md:text-4xl text-black font-bold">
+                    <h2 className="text-center text-2xl md:text-4xl text-black font-bold">
                         Claim Your Photos!
                     </h2>
-                    <p className="text-center text-[1rem] md:text-lg px-12  font-normal">
+                    <p className="text-center text-[0.8rem] md:text-lg px-12 font-normal">
                         Customers can access their photos digitally and printed
                     </p>
                     <div className="flex justify-center flex-wrap gap-10 mt-10">
@@ -212,7 +212,7 @@ const WhatYouGetPage = () => {
                                     src={DriveImg}
                                     alt="Access Google Drive"
                                     fill
-                                    className="object-cover "
+                                    className="object-cover"
                                 />
                             </figure>
                             <p className="text-center text-2xl mt-3">
@@ -243,8 +243,8 @@ const WhatYouGetPage = () => {
                     imgLink="/Assets/carousel1.jpg"
                 />
                 <section className="w-screen h-full flex flex-col-reverse md:flex-row justify-center gap-10 mt-32">
-                    <div className="md:w-1/2 w-full md:ps-12 lg:ps-32 px-8 md:px-0 pt-12">
-                        <h2 className="text-2xl md:text-3xl text-black">
+                    <div className="md:w-1/2 w-full md:ps-12 lg:ps-32 px-8 md:px-0 pt-12 text-center md:text-left">
+                        <h2 className="text-2xl md:text-4xl text-black">
                             Choose Your Layouts
                         </h2>
                         <p className="mt-5 text-[0.8rem] md:text-lg">
@@ -275,7 +275,7 @@ const WhatYouGetPage = () => {
                             />
                         </figure>
                     </div>
-                    <div className="md:w-1/2 w-full px-8 md:px-0 md:pe-12 lg:pe-32 pt-12">
+                    <div className="md:w-1/2 w-full px-8 md:px-0 md:pe-12 lg:pe-32 pt-12 text-center md:text-left">
                         <h2 className="text-2xl md:text-3xl text-black">
                             Choose Or Custom Your Inframe Design
                         </h2>

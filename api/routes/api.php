@@ -6,6 +6,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PopupController;
+use App\Http\Controllers\EmailController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -36,3 +37,6 @@ Route::delete('dashboard/portfolio/delete/{id}', [PortfolioController::class, 'd
 Route::get('/dashboard/popup', [PopupController::class, 'get']);
 Route::post('/dashboard/popup/add', [PopupController::class, 'store']);
 Route::post('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);
+
+// EMAIL
+Route::post('/send-email', [EmailController::class, 'send']);

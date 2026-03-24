@@ -83,68 +83,72 @@ const Form = ({ title, inputs, data, handle }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2 className="text-2xl font-bold text-center">{title}</h2>
+        <form onSubmit={handleSubmit} className="h-full">
+            <div className="flex flex-col justify-around h-full">
+                <h2 className="text-2xl font-bold text-center">{title}</h2>
 
-            {title === 'Edit Image' && (
-                <figure className="w-56 h-56 relative mx-auto">
-                    <Image
-                        src={
-                            preview ??
-                            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`
-                        }
-                        alt="Uploaded Image"
-                        fill
-                        className="object-cover"
-                    />
-                </figure>
-            )}
+                {title === 'Edit Image' && (
+                    <figure className="w-56 h-56 relative mx-auto">
+                        <Image
+                            src={
+                                preview ??
+                                `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`
+                            }
+                            alt="Uploaded Image"
+                            fill
+                            className="object-cover"
+                        />
+                    </figure>
+                )}
 
-            <ul>
-                {inputs?.map(i => (
-                    <li className="flex mt-4" key={i}>
-                        <label className="w-32" htmlFor={i}>
-                            {i}
-                        </label>
+                <ul>
+                    {inputs?.map(i => (
+                        <li className="flex mt-4" key={i}>
+                            <label className="w-32" htmlFor={i}>
+                                {i}
+                            </label>
 
-                        {i === 'image' || MULTI_FILE_INPUTS.includes(i) ? (
-                            <input
-                                type="file"
-                                ref={fileRef}
-                                name={i}
-                                multiple={MULTI_FILE_INPUTS.includes(i)}
-                                onChange={
-                                    i === 'image'
-                                        ? handleFileChange
-                                        : handleFilesChange
-                                }
-                                className="ms-3"
-                            />
-                        ) : i === 'content' || i === 'description' ? (
-                            <textarea
-                                name={i}
-                                value={formData[i]}
-                                onChange={handleChange}
-                                className="ms-3 h-32"
-                            />
-                        ) : (
-                            <input
-                                type="text"
-                                name={i}
-                                value={formData[i]}
-                                onChange={handleChange}
-                                className="ms-3"
-                            />
-                        )}
+                            {i === 'image' || MULTI_FILE_INPUTS.includes(i) ? (
+                                <input
+                                    type="file"
+                                    ref={fileRef}
+                                    name={i}
+                                    multiple={MULTI_FILE_INPUTS.includes(i)}
+                                    onChange={
+                                        i === 'image'
+                                            ? handleFileChange
+                                            : handleFilesChange
+                                    }
+                                    className="ms-3"
+                                />
+                            ) : i === 'content' || i === 'description' ? (
+                                <textarea
+                                    name={i}
+                                    value={formData[i]}
+                                    onChange={handleChange}
+                                    className="ms-3 h-32"
+                                />
+                            ) : (
+                                <input
+                                    type="text"
+                                    name={i}
+                                    value={formData[i]}
+                                    onChange={handleChange}
+                                    className="ms-3"
+                                />
+                            )}
+                        </li>
+                    ))}
+
+                    <li className="flex justify-center mt-4">
+                        <button
+                            type="submit"
+                            className="px-10 py-5 bg-gray-200">
+                            {isAddForm ? 'Add' : 'Edit'}
+                        </button>
                     </li>
-                ))}
-
-                <li className="flex justify-center mt-4">
-                    <button type="submit" className="px-10 py-5 bg-gray-200">
-                        {isAddForm ? 'Add' : 'Edit'}
-                    </button>
-                </li>
-            </ul>
+                </ul>
+            </div>
         </form>
     )
 }

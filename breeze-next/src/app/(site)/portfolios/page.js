@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import PortfolioImage from '@/components/PortfolioImage'
 import getPortfolios from '@/lib/getPortfolios'
 import Image from 'next/image'
 
@@ -79,24 +80,12 @@ const PortfoliosPage = async () => {
                             const responsiveClass = `md:${spanClass.split(' ')[0]} md:${spanClass.split(' ')[1]}`
 
                             return (
-                                <figure
-                                    key={image.id}
-                                    className={`relative overflow-hidden group m-0 ${responsiveClass}`}>
-                                    <Image
-                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image.image}`}
-                                        alt={`portfolios image ${index}`}
-                                        fill
-                                        loading={index < 3 ? 'eager' : 'lazy'}
-                                        priority={index < 3 ? true : false}
-                                        className="object-cover transition-all duration-500 ease-out group-hover:scale-[1.04] group-hover:brightness-90"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                    />
-
-                                    {/* Index number */}
-                                    <span className="absolute top-3 left-3 text-[10px] font-bold text-white/70 mix-blend-difference">
-                                        {String(index + 1).padStart(2, '0')}
-                                    </span>
-                                </figure>
+                                <PortfolioImage
+                                    image={image}
+                                    index={index}
+                                    spanClass={spanClass}
+                                    responsiveClass={responsiveClass}
+                                />
                             )
                         })
                     ) : (

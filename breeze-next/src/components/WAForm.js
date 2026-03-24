@@ -1,19 +1,22 @@
 'use client'
 
 import { useType } from '@/hooks/type'
-import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Swal from 'sweetalert2'
+import axios from '@/lib/axios'
 
 const WAForm = () => {
     const { types } = useType()
     const TYPES = types?.data.map(t => t.name)
     const [formData, setFormData] = useState({
         name: '',
-        wa: '',
+        email: '',
         event: '',
         type: TYPES?.[0] ?? '',
     })
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
     const router = useRouter()
 
     const handleChange = e => {
@@ -23,27 +26,40 @@ const WAForm = () => {
         })
     }
 
-    const handleSubmit = (e, name, wa, event, type) => {
+    const handleSubmit = async e => {
         e.preventDefault()
-        const message = `helo, my name is ${name} and im planning to have a(n) ${event} event and i would like to know more about your ${type} photobooth type`
+        setLoading(true)
+        setError('')
 
-        router.push(
-            `https://wa.me/6285858752663?text=${encodeURIComponent(message)}`,
-        )
+        try {
+            await axios.post(`/api/send-email`, formData)
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Email Sent',
+                text: 'Email Sent Successfully',
+            })
+
+            setFormData({
+                name: '',
+                email: '',
+                event: '',
+                type: TYPES?.[0] ?? '',
+            })
+        } catch (err) {
+            console.log('Catch error:', err) // ← add this
+            setError(err.message)
+            Swal.fire({
+                icon: 'error',
+                title: 'Error. . .',
+                text: err.response?.data?.message,
+            })
+        } finally {
+            setLoading(false)
+        }
     }
-
     return (
-        <form
-            onSubmit={e =>
-                handleSubmit(
-                    e,
-                    formData.name,
-                    formData.wa,
-                    formData.event,
-                    formData.type,
-                )
-            }
-            className="mt-10">
+        <form onSubmit={handleSubmit} className="mt-10">
             <ul>
                 <li className="flex items-center">
                     <input
@@ -57,15 +73,15 @@ const WAForm = () => {
                         className="w-full h-16 rounded-2xl"
                     />
                 </li>
-                <li className=" items-center mt-4">
+                <li className="items-center mt-4">
                     <input
-                        type="text"
-                        name="wa"
-                        id="wa"
+                        type="email"
+                        name="email"
+                        id="email"
                         required
-                        value={formData.wa}
+                        value={formData.email}
                         onChange={handleChange}
-                        placeholder="Whatsapp No."
+                        placeholder="Your Email"
                         className="w-full h-16 rounded-2xl"
                     />
                 </li>
@@ -90,22 +106,31 @@ const WAForm = () => {
                         onChange={handleChange}
                         className="w-full ms-3 h-16 rounded-2xl">
                         {TYPES?.map(type => (
-                            <option value={type}>{type}</option>
+                            <option key={type} value={type}>
+                                {type}
+                            </option>
                         ))}
                     </select>
                 </li>
-                <li>
-                    <button
-                        type="submit"
-                        className="w-28 h-16 mt-5 ms-3 rounded-xl text-white flex justify-center items-center"
-                        style={{
-                            background: 'var(--color-secondary)',
-                        }}>
-                        Send
-                    </button>
+
+                {error && (
+                    <li className="mt-2 text-red-500 text-sm ms-1">{error}</li>
+                )}
+
+                <li className="">
+                    <div className="flex justify-center md:justify-start">
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-28 h-16 mt-5 ms-3 rounded-xl text-white flex justify-center items-center disabled:opacity-50"
+                            style={{ background: 'var(--color-secondary)' }}>
+                            {loading ? 'Sending...' : 'Send'}
+                        </button>
+                    </div>
                 </li>
             </ul>
         </form>
     )
 }
+
 export default WAForm

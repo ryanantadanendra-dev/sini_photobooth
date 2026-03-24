@@ -50,11 +50,11 @@ const ServicePage = async ({ params }) => {
     const type = types?.data.find(t => t.slug === slug)
 
     const SPAN_PATTERN = [
-        'col-span-2 row-span-2',
-        'col-span-1 row-span-1',
-        'col-span-1 row-span-1',
-        'col-span-1 row-span-1',
-        'col-span-2 row-span-1',
+        'md:col-span-2 md:row-span-2 ',
+        'md:col-span-1 md:row-span-1 ',
+        'md:col-span-1 md:row-span-1 ',
+        'md:col-span-1 md:row-span-1',
+        'col-span-2 md:row-span-1',
     ]
     const getSpanClass = index => SPAN_PATTERN[index % SPAN_PATTERN.length]
 
@@ -108,19 +108,19 @@ const ServicePage = async ({ params }) => {
                 </section>
 
                 <section className="w-screen min-h-full pt-20">
-                    <h2 className="text-center text-black text-3xl">
+                    <h2 className="text-center text-black px-12 md:px-32 text-2xl md:text-4xl">
                         Our Setup
                     </h2>
-                    <p className="text-center text-[0.8rem] px-3 md:px-32 lg:px-96">
+                    <p className="text-center text-[0.8rem] md:text-lg md:text-lg px-12 md:px-32 lg:px-96">
                         Take a closer look at the premium equipment, lighting,
                         and backdrops that bring your photobooth moments to
                         life.
                     </p>
-                    <div className="grid grid-cols-3 gap-3 min-h-[85vh] px-4 md:px-12 py-12">
+                    <div className="grid md:grid-cols-3 grid-cols-2 gap-3 min-h-[85vh] px-4 md:px-12 py-12">
                         {type?.setupImages.map((image, index) => (
                             <figure
                                 key={image.id}
-                                className={`relative overflow-hidden rounded-2xl min-h-72 group m-0 ${getSpanClass(index)}`}>
+                                className={`relative overflow-hidden rounded-2xl min-h-56 md:min-h-72 group m-0 ${getSpanClass(index)}`}>
                                 <Image
                                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image}`}
                                     alt={`${type?.name} setup ${index + 1}`}
@@ -138,11 +138,11 @@ const ServicePage = async ({ params }) => {
                     </div>
                 </section>
 
-                <section className="w-screen h-full flex flex-col items-center">
-                    <h2 className="text-center text-3xl text-black">
+                <section className="w-screen h-full flex flex-col items-center py-12">
+                    <h2 className="text-center px-12 md:px-32 md:text-3xl text-black">
                         How It Works?
                     </h2>
-                    <p className="text-center text-[0.8rem] px-4 md:px-32 lg:px-96">
+                    <p className="text-center text-[0.8rem] md:text-lg px-12 md:px-32 lg:px-96">
                         Watch how our photobooth works and see how easy it is
                         for guests to capture fun and memorable moments
                     </p>
