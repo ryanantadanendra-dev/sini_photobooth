@@ -70,6 +70,7 @@ const ServicesPage = async () => {
                     <div className="flex justify-center flex-wrap gap-12 mt-10">
                         {types?.data.map((type, index) => (
                             <Link
+                                key={type?.id}
                                 href={`/service/${type?.slug}`}
                                 aria-label="Type Page Link">
                                 <figure className="w-72 h-56">

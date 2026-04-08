@@ -9,8 +9,8 @@ const BlogCards = () => {
     const sorted = blogs?.data.sort((a, b) => b.created_at - a.created_at)
 
     const displayData = sorted?.slice(0, 4).map((blog, index) => (
-        <div class="card">
-            <div class="card-details">
+        <div key={blog?.id} className="card">
+            <div className="card-details">
                 <figure className="relative w-full md:h-40 h-28">
                     <Image
                         src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${blog?.image}`}
@@ -22,12 +22,12 @@ const BlogCards = () => {
                         style={{ borderRadius: '18px' }}
                     />
                 </figure>
-                <p class="text-title  text-lg md:text-[1.5em] line-clamp-2 px-2 mt-2">
+                <p className="text-title  text-lg md:text-[1.5em] line-clamp-2 px-2 mt-2">
                     {blog?.title}
                 </p>
-                <p class="text-body line-clamp-1 px-2">{blog?.subtitle}</p>
+                <p className="text-body line-clamp-1 px-2">{blog?.subtitle}</p>
             </div>
-            <Link href={`/blog/${blog?.slug}`} class="card-button">
+            <Link href={`/blog/${blog?.slug}`} className="card-button">
                 More info
             </Link>
         </div>

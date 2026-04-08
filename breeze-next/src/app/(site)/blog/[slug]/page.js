@@ -71,6 +71,7 @@ const BlogPage = async ({ params }) => {
                             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${blog?.image}`}
                             alt={`${blog?.title} image`}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover"
                         />
                     </figure>

@@ -299,7 +299,7 @@ const Home = async () => {
             </section>
 
             {/* Blogs */}
-            <section className="blogs-section w-full h-full md:h-screen py-32">
+            <section className="blogs-section w-full min-h-full md:min-h-screen py-32">
                 <h2 className="text-center font-bold text-2xl md:text-4xl text-black px-12 md:px-32">
                     Check Out Our Latest Article
                 </h2>

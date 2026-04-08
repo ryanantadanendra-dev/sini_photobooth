@@ -44,9 +44,9 @@ export const metadata = {
     },
 }
 
-const Card = ({ data }) => {
+const Card = ({ data, index }) => {
     return (
-        <div class="card">
+        <div class="card" key={index}>
             <div class="card-details">
                 <figure className="relative w-full md:h-40 h-28">
                     <Image
@@ -84,8 +84,8 @@ const BlogsPage = async () => {
             </header>
             <main className="min-h-screen md:min-h-full md:px-12 py-12">
                 <div className="flex justify-center gap-8 md:gap-32 lg:gap-12 flex-wrap">
-                    {blogs?.data.map((blog, index) => (
-                        <Card data={blog} />
+                    {blogs?.data.map(blog => (
+                        <Card data={blog} index={blog?.id} />
                     ))}
                 </div>
             </main>

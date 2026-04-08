@@ -186,6 +186,7 @@ const Table = ({
                                             alt={
                                                 row.name ?? row.title ?? 'Image'
                                             }
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover"
                                         />
                                     </figure>
@@ -211,6 +212,7 @@ const Table = ({
                                                                 <Image
                                                                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${img}`}
                                                                     fill
+                                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                                     alt={`Setup image ${i + 1}`}
                                                                     className="object-cover"
                                                                 />

@@ -52,8 +52,9 @@ const EmblaCarousel = ({ options, datas }) => {
                                     priority={isPriority}
                                     loading={isPriority ? 'eager' : 'lazy'}
                                     sizes="100vw"
-                                    quality={85}
+                                    quality={90}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="embla__slide__img object-cover"
                                     // placeholder="blur"
                                     // Preload adjacent slides for smoother transitions

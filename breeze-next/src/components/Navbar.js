@@ -1,6 +1,6 @@
 'use client'
 
-// import Logo from '../../public/assets/logo.png'
+import Logo from '../../public/assets/logo.png'
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/isMobile'
 import Link from 'next/link'
@@ -128,7 +128,7 @@ const Navbar = () => {
                     className="relative block w-full h-full"
                     aria-label="Go to homepage">
                     <Image
-                        src={''}
+                        src={Logo ? Logo : ''}
                         alt="Company logo"
                         fill
                         sizes="(max-width: 1024px) 128px, 160px"

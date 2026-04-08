@@ -44,6 +44,7 @@ const Popup = ({ popup }) => {
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${popup?.data.image}`}
                     alt="Popup Image"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover rounded-xl"
                 />
             </figure>

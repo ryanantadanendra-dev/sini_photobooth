@@ -11,7 +11,9 @@ const TypesLayout = () => {
     return (
         <div>
             {types?.data?.map((type, index) => (
-                <section className="w-full flex md:flex-row flex-col lg:gap-12 md:gap-12 md:px-12 lg:px-32 mt-20">
+                <section
+                    key={type?.id}
+                    className="w-full flex md:flex-row flex-col lg:gap-12 md:gap-12 md:px-12 lg:px-32 mt-20">
                     <figure className="relative w-56 h-56 md:w-96 md:h-96 mx-auto md:mx-0">
                         <Image
                             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.image}`}

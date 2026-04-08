@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Hero from '@/components/Hero'
 import Image from 'next/image'
 import setupImg from '../../../../public/Assets/setup.jpg'
-import setupImg2 from '../../../../public/Assets/setup2.jpg'
+import setupImg2 from '../../../../public/Assets/setup3.jpg'
 import Carousel from '@/components/Carousel'
 import Carousel1 from '../../../../public/Assets/carousel1.jpg'
 import Carousel2 from '../../../../public/Assets/carousel2.jpg'
@@ -83,7 +83,7 @@ const datas = [
 ]
 
 const Card = ({ data }) => (
-    <div className="w-72 h-32 px-4 py-4">
+    <div key={data?.id} className="w-72 h-32 px-4 py-4">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
@@ -122,19 +122,12 @@ const WhatYouGetPage = () => {
                         life.
                     </p>
                     <div className="flex flex-wrap justify-center mt-8 gap-4">
-                        <figure className="relative w-72 h-[30rem]">
-                            <Image
-                                src={setupImg}
-                                alt="Setup Image"
-                                fill
-                                className="object-cover rounded-2xl"
-                            />
-                        </figure>
-                        <figure className="relative w-72 h-[30rem]">
+                        <figure className="relative w-[30rem] h-[30rem]">
                             <Image
                                 src={setupImg2}
                                 alt="Setup Image"
                                 fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-cover rounded-2xl"
                             />
                         </figure>
@@ -172,7 +165,10 @@ const WhatYouGetPage = () => {
                         captured through our photobooth experiences.
                     </p>
                     <div className="flex flex-col items-center justify-center w-screen gap-1 md:gap-5 mt-12 px-8 md:px-0">
-                        <Carousel datas={carouselImages} />
+                        <Carousel
+                            datas={carouselImages}
+                            options={{ watchDrag: false }}
+                        />
                         <h3 className="text-xl md:text-3xl font-bold text-black">
                             Photos
                         </h3>
@@ -185,7 +181,7 @@ const WhatYouGetPage = () => {
                         </p>
                     </div>
                 </section>
-                <section className="w-screen h-full py-12">
+                <section className="w-screen h-full py-20">
                     <h2 className="text-center text-2xl md:text-4xl text-black font-bold">
                         Claim Your Photos!
                     </h2>
@@ -194,11 +190,12 @@ const WhatYouGetPage = () => {
                     </p>
                     <div className="flex justify-center flex-wrap gap-10 mt-10">
                         <div>
-                            <figure className="relative md:w-96 w-80 h-64">
+                            <figure className="relative md:w-80 w-80 h-52">
                                 <Image
                                     src={QrImg}
                                     alt="Scan QR code"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover "
                                 />
                             </figure>
@@ -207,11 +204,12 @@ const WhatYouGetPage = () => {
                             </p>
                         </div>
                         <div>
-                            <figure className="relative md:w-96 w-80 h-64">
+                            <figure className="relative md:w-80 w-80 h-52">
                                 <Image
                                     src={DriveImg}
                                     alt="Access Google Drive"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover"
                                 />
                             </figure>
@@ -220,11 +218,12 @@ const WhatYouGetPage = () => {
                             </p>
                         </div>
                         <div>
-                            <figure className="relative md:w-96 w-80 h-64">
+                            <figure className="relative md:w-80 w-80 h-52">
                                 <Image
                                     src={Carousel1}
                                     alt="Scan QR code"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover "
                                 />
                             </figure>
@@ -259,19 +258,21 @@ const WhatYouGetPage = () => {
                                 src={PoseImg}
                                 alt="Pose Layout Image"
                                 fill
-                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-contain"
                             />
                         </figure>
                     </div>
                 </section>
                 <section className="w-screen h-full flex flex-col md:flex-row justify-center gap-10 mt-32">
                     <div className="md:w-1/2 w-full">
-                        <figure className="relative md:w-96 w-72 h-72 md:h-96 mx-auto">
+                        <figure className="relative md:w-96 w-72 h-72 md:h-96 mx-auto rounded-2xl">
                             <Image
                                 src={InframeImg}
                                 alt="Pose Layout Image"
                                 fill
-                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-contain rounded-2xl"
                             />
                         </figure>
                     </div>
@@ -285,7 +286,7 @@ const WhatYouGetPage = () => {
                         </p>
                     </div>
                 </section>
-                <section className="w-screen h-full py-32">
+                <section className="w-screen h-full pt-32 pb-12">
                     <h2 className="text-center text-2xl md:text-4xl text-black font-bold px-4 md:px-32 lg:px-72">
                         Light Up Your Moment With Cute Properties That We
                         Provide
@@ -302,8 +303,8 @@ const WhatYouGetPage = () => {
                                 src={setupImg2}
                                 alt="Property Photo"
                                 fill
-                                className="object-cover"
-                                style={{ borderRadius: '0% 25% 0% 25%' }}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover rounded-2xl"
                             />
                         </figure>
                         <figure className="w-72 h-56 relative">
@@ -311,8 +312,8 @@ const WhatYouGetPage = () => {
                                 src={PropImg1}
                                 alt="Property Photo"
                                 fill
-                                className="object-cover"
-                                style={{ borderRadius: '25%' }}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover rounded-2xl"
                             />
                         </figure>
                         <figure className="w-72 h-56 relative">
@@ -320,8 +321,8 @@ const WhatYouGetPage = () => {
                                 src={PropImg2}
                                 alt="Property Photo"
                                 fill
-                                className="object-cover"
-                                style={{ borderRadius: '25% 0% 25% 0%' }}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover rounded-2xl"
                             />
                         </figure>
                     </div>

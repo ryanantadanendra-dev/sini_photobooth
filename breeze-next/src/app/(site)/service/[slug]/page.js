@@ -70,7 +70,7 @@ const ServicePage = async ({ params }) => {
     return (
         <>
             <header>
-                <section className="hero w-screen h-[25rem]">
+                <section className="hero w-screen h-[30rem]">
                     <div className="w-full h-full relative flex justify-center items-center">
                         <div
                             className="absolute inset-0 bg-fixed bg-center bg-cover"
@@ -88,9 +88,9 @@ const ServicePage = async ({ params }) => {
                             sizes="100vw"
                             className="invisible"
                         />
-                        <div className="absolute inset-0 bg-black/30 z-10" />
+                        <div className="absolute inset-0 bg-black/50 z-10" />
                         <div className="relative z-20 text-center">
-                            <h1 className="text-5xl text-white">
+                            <h1 className="text-6xl text-white">
                                 {type?.name}
                             </h1>
                             <p className="text-2xl text-center text-white">
