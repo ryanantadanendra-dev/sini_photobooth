@@ -5,6 +5,7 @@ import Header from '../../Header'
 import Table from '@/components/Table'
 import Modal from '@/components/Modal'
 import Swal from 'sweetalert2'
+import { Milonga } from 'next/font/google'
 
 const TypesPage = () => {
     const { types, add, deleteData, edit, deleteImage, addImage } = useType()
@@ -14,7 +15,7 @@ const TypesPage = () => {
         subname: '',
         description: '',
         image: null,
-        setupImages: [],
+        setupImage: null,
         vidLink: '',
     })
 
@@ -74,6 +75,7 @@ const TypesPage = () => {
     const handleFileChange = e => {
         const file = e.target.files[0]
         const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg']
+        const inputName = e.target.name
 
         if (!ALLOWED_TYPES.includes(file.type)) {
             Swal.fire({
@@ -81,13 +83,9 @@ const TypesPage = () => {
                 title: 'Oops...',
                 text: 'File Must Be JPG, JPEG, Or PNG',
             })
-
             e.target.value = null
-
-            setFormData({
-                ...formData,
-                image: null,
-            })
+            setFormData({ ...formData, [inputName]: null }) // ✅ only reset the right field
+            return
         }
 
         if (file.size > 2 * 1024 * 1024) {
@@ -96,23 +94,12 @@ const TypesPage = () => {
                 title: 'Oops...',
                 text: 'File Must Be Under 2mb',
             })
-
             e.target.value = null
-
-            setFormData({
-                ...formData,
-                image: null,
-            })
+            setFormData({ ...formData, [inputName]: null })
+            return
         }
 
-        if (file) {
-            {
-                setFormData({
-                    ...formData,
-                    image: file,
-                })
-            }
-        }
+        setFormData({ ...formData, [inputName]: file })
     }
 
     const handleSubmit = async e => {
@@ -126,7 +113,7 @@ const TypesPage = () => {
                 subname: '',
                 description: '',
                 image: null,
-                setupImages: [],
+                setupImage: null,
                 vidLink: '',
             })
             Swal.fire({
@@ -139,7 +126,7 @@ const TypesPage = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: error,
+                text: error.response.data.message,
             })
         }
     }
@@ -303,15 +290,13 @@ const TypesPage = () => {
                                 />
                             </li>
                             <li className="flex mt-4">
-                                <label htmlFor="setupImages[]" className="w-32">
-                                    Setup Images
+                                <label htmlFor="setupImage" className="w-32">
+                                    Setup Image
                                 </label>
                                 <input
                                     type="file"
-                                    name="setupImages[]"
-                                    accept="image/*"
-                                    multiple
-                                    onChange={handleFilesChange}
+                                    name="setupImage"
+                                    onChange={handleFileChange}
                                     className="ms-3"
                                 />
                             </li>

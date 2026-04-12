@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('subname');
             $table->longText('description');
             $table->string('image');
-            $table->json('setupImages');
+            $table->string('setupImage');
             $table->string('vidLink');
             $table->string('slug')->unique();
             $table->timestamps();

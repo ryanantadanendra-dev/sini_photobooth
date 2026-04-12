@@ -19,7 +19,6 @@ class TypeController extends Controller
     }
 
     public function store(Request $request) {
-        $images = [];
         $path = null;
 
         $validatedData = $request->validate([
@@ -27,8 +26,7 @@ class TypeController extends Controller
             'subname' => 'required|max:255',
             'description' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png|nullable',
-            'setupImages' => ['nullable', 'array', 'min:1'],
-            'setupImages.*' => 'image|mimes:jpeg,jpg,png|max:2048',
+            'setupImage' => 'image|mimes:jpeg,jpg,png|nullable',
             'vidLink' => 'nullable|string',
         ]);
 
@@ -36,11 +34,8 @@ class TypeController extends Controller
             $path = $request->image->store('types', 'public');
         }
             
-        if($request->hasFile('setupImages')) {
-            foreach ($request->file('setupImages') as $file) {
-                $setupImgPath = $file->store('types', 'public');
-                $images[] = $setupImgPath;
-            }
+        if($request->hasFile('setupImage')) {
+            $setupImgPath = $request->setupImage->store('types', 'public');
         }
 
         $slug = Str::slug($request->name);
@@ -50,7 +45,7 @@ class TypeController extends Controller
             'subname' => $validatedData['subname'],
             'description' => $validatedData['description'],
             'image' => $path,
-            'setupImages' => $images,
+            'setupImage' => $setupImgPath,
             'vidLink' => $validatedData['vidLink'],
             'slug' => $slug
         ]);
@@ -59,41 +54,6 @@ class TypeController extends Controller
             'success' => true,
             'message' => 'Type Added Successfully!'
         ], 201);
-    }
-
-    public function addImage(Request $request, $slug) {
-        $type = Type::where('slug', $slug)->firstOrFail();
-
-
-        $validatedData = $request->validate([
-            'setupImages' => ['nullable', 'array', 'min:1'],
-            'setupImages.*' => 'image|mimes:jpeg,jpg,png|max:2048',
-        ]);
-
-            $files = $request->file('setupImages');
-
-            if (!$files) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No files uploaded'
-                ], 400);
-            }
-
-            $existingImages = $type->setupImages ?? [];
-
-            foreach ($request->file('setupImages') as $file) {
-                $path = $file->store('types', 'public');
-                $existingImages[] = $path;
-            }
-
-            $type->update([
-                'setupImages' => $existingImages,
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Image Added Successfully!'
-            ], 201);
     }
 
     public function edit(Request $request, $slug) {
@@ -135,15 +95,56 @@ class TypeController extends Controller
         if($type) {
             Storage::disk('public')->delete($type->image);
 
-            $validatedData = $request->validate([
-                'image' => 'image|mimes:jpeg,jpg,png|max:2048'
-            ]);
-
+            
             if($request->hasFile('image')) {
+                $validatedData = $request->validate([
+                    'image' => 'image|mimes:jpeg,jpg,png|max:2048'
+                ]);
                 $path = $request->image->store('types', 'public');
 
                 $type->update([
                     'image' => $path
+                ]);
+
+                
+            } else if($request->hasFile('setupImage')) {
+                $validatedData = $request->validate([
+                    'setupImage' => 'image|mimes:jpeg,jpg,png|max:2048'
+                ]);
+                $path = $request->setupImage->store('types', 'public');
+
+                $type->update([
+                    'setupImage' => $path
+                ]);
+            }
+                
+            return response()->json([
+                'success' => true,
+                'message' => 'Image Updated Successfully'
+            ], 201);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Something Went Wrong'
+            ], 400);
+        }
+    }
+
+    public function editSetupImage(Request $request, $slug) {
+        $type = Type::where('slug', $slug)->firstOrFail();
+
+        if($type) {
+            Storage::disk('public')->delete($type->setupImage);
+
+            $validatedData = $request->validate([
+                'setupImage' => 'image|mimes:jpeg,jpg,png|max:2048'
+            ]);
+
+            if($request->hasFile('setupImage')) {
+                $path = $request->setupImage->store('types', 'public');
+
+                $type->update([
+                    'setupImage' => $path
                 ]);
 
                 return response()->json([
@@ -158,34 +159,6 @@ class TypeController extends Controller
                 'success' => false,
                 'message' => 'Something Went Wrong'
             ], 400);
-        }
-    }
-
-    public function deleteSetupImage($slug, $index) {
-        $type = Type::where('slug', $slug)->firstOrFail();
-
-        if($type) {
-            $images = $type->setupImages;
-
-            if(!isset($images[$index])) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No Image Found!'
-                ], 404);
-            }
-            
-            Storage::disk('public')->delete($type->setupImages[$index]);
-            unset($images[$index]);
-            $images = array_values($images);
-
-            $type->update([
-                'setupImages' => $images
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'setup image deleted!'
-            ], 201);
         }
     }
 

@@ -7,15 +7,15 @@ import Image from 'next/image'
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg']
 const MAX_FILE_SIZE = 2 * 1024 * 1024
 const ADD_TITLES = ['Add Blog', 'Add Type', 'Add Data']
-const MULTI_FILE_INPUTS = ['setupImages', 'images']
+const MULTI_FILE_INPUTS = ['images']
 
 const Form = ({ title, inputs, data, handle }) => {
     const isAddForm = ADD_TITLES.includes(title)
 
     const [preview, setPreview] = useState(
-        data?.image
+        title == 'Edit Image'
             ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data.image}`
-            : null,
+            : `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data.setupImage}`,
     )
 
     const fileRef = useRef(null)
@@ -24,7 +24,7 @@ const Form = ({ title, inputs, data, handle }) => {
         inputs?.reduce((acc, input) => {
             acc[input] = data
                 ? data[input]
-                : input === 'image'
+                : input === 'image' || input == 'setupImage'
                   ? null
                   : MULTI_FILE_INPUTS.includes(input)
                     ? []
@@ -38,7 +38,11 @@ const Form = ({ title, inputs, data, handle }) => {
         if (!file) return
 
         setPreview(URL.createObjectURL(file))
-        setFormData(prev => ({ ...prev, image: file }))
+        if (e.target.name == 'image') {
+            setFormData(prev => ({ ...prev, image: file }))
+        } else {
+            setFormData(prev => ({ ...prev, setupImage: file }))
+        }
     }, [])
 
     const handleChange = useCallback(e => {
@@ -64,7 +68,7 @@ const Form = ({ title, inputs, data, handle }) => {
                         : 'File must be under 2MB',
                 })
                 e.target.value = null
-                setFormData(prev => ({ ...prev, setupImages: [] }))
+                setFormData(prev => ({ ...prev, setupImage: null }))
                 return
             }
 
@@ -87,7 +91,7 @@ const Form = ({ title, inputs, data, handle }) => {
             <div className="flex flex-col justify-around h-full">
                 <h2 className="text-2xl font-bold text-center">{title}</h2>
 
-                {title === 'Edit Image' && (
+                {title === 'Edit Image' ? (
                     <figure className="w-56 h-56 relative mx-auto">
                         <Image
                             src={
@@ -100,7 +104,20 @@ const Form = ({ title, inputs, data, handle }) => {
                             className="object-cover"
                         />
                     </figure>
-                )}
+                ) : title == 'Edit Setup Image' ? (
+                    <figure className="w-56 h-56 relative mx-auto">
+                        <Image
+                            src={
+                                preview ??
+                                `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.setupImage}`
+                            }
+                            alt="Uploaded Image"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover"
+                        />
+                    </figure>
+                ) : null}
 
                 <ul>
                     {inputs?.map(i => (
@@ -109,14 +126,16 @@ const Form = ({ title, inputs, data, handle }) => {
                                 {i}
                             </label>
 
-                            {i === 'image' || MULTI_FILE_INPUTS.includes(i) ? (
+                            {i === 'image' ||
+                            i === 'setupImage' ||
+                            MULTI_FILE_INPUTS.includes(i) ? (
                                 <input
                                     type="file"
                                     ref={fileRef}
                                     name={i}
                                     multiple={MULTI_FILE_INPUTS.includes(i)}
                                     onChange={
-                                        i === 'image'
+                                        i === 'image' || i == 'setupImage'
                                             ? handleFileChange
                                             : handleFilesChange
                                     }

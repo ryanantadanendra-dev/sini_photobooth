@@ -11,16 +11,8 @@ class Type extends Model
         'subname',
         'description',
         'image',
-        'setupImages',
+        'setupImage',
         'vidLink',
         'slug'
-    ];
-
-    protected $attributes = [
-        'setupImages' => '[]',
-    ];
-
-    protected $casts = [
-        'setupImages' => 'array',
     ];
 }

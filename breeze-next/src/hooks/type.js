@@ -32,11 +32,7 @@ export const useType = () => {
         data.append('description', formData.description)
         data.append('vidLink', formData.vidLink)
         data.append('image', formData.image)
-        if (formData.setupImages?.length > 0) {
-            formData.setupImages.forEach(image =>
-                data.append('setupImages[]', image),
-            )
-        }
+        data.append('setupImage', formData.setupImage)
 
         const response = await axios.post('/api/dashboard/type/add', data, {
             headers: {
@@ -92,7 +88,11 @@ export const useType = () => {
 
         const data = new FormData()
 
-        data.append('image', formData.image)
+        if (formData.image) {
+            data.append('image', formData.image)
+        } else if (formData.setupImage) {
+            data.append('setupImage', formData.setupImage)
+        }
         data.append('_method', 'PUT')
 
         const response = await axios.post(

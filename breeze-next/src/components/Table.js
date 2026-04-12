@@ -202,36 +202,30 @@ const Table = ({
 
                             {isTypes && (
                                 <td className="w-32">
-                                    <div className="flex flex-col items-center justify-center w-72 max-h-32 md:max-h-56">
-                                        <div className="overflow-y-auto">
-                                            {row.setupImages?.length > 0 ? (
-                                                row.setupImages.map(
-                                                    (img, i) => (
-                                                        <div key={i}>
-                                                            <figure className="relative w-20 h-20 md:w-32 md:h-32 mt-5 mb-2">
-                                                                <Image
-                                                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${img}`}
-                                                                    fill
-                                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                                    alt={`Setup image ${i + 1}`}
-                                                                    className="object-cover"
-                                                                />
-                                                            </figure>
-                                                            <DeleteIcon
-                                                                onClick={() =>
-                                                                    handleDeleteImage(
-                                                                        row.slug,
-                                                                        i,
-                                                                    )
-                                                                }
-                                                            />
-                                                        </div>
-                                                    ),
-                                                )
-                                            ) : (
-                                                <p>No Image Yet</p>
-                                            )}
-                                        </div>
+                                    <div className="flex flex-col items-center justify-center w-56">
+                                        <figure className="relative w-20 h-20 md:w-32 md:h-32 mb-2">
+                                            <Image
+                                                fill
+                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${row.setupImage}`}
+                                                alt={
+                                                    row.name ??
+                                                    row.title ??
+                                                    'Image'
+                                                }
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="object-cover"
+                                            />
+                                        </figure>
+                                        {!isPortfolios && (
+                                            <EditIcon
+                                                onClick={() =>
+                                                    openModal(
+                                                        'edit-setupimage',
+                                                        row,
+                                                    )
+                                                }
+                                            />
+                                        )}
                                     </div>
                                 </td>
                             )}
@@ -285,6 +279,14 @@ const Table = ({
                     <Form
                         title="Edit Image"
                         inputs={['image']}
+                        data={data}
+                        handle={handleEditImage}
+                    />
+                )}
+                {isOpen === 'edit-setupimage' && (
+                    <Form
+                        title="Edit Setup Image"
+                        inputs={['setupImage']}
                         data={data}
                         handle={handleEditImage}
                     />

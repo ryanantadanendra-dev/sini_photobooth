@@ -9,34 +9,37 @@ use App\Http\Controllers\PopupController;
 use App\Http\Controllers\EmailController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+    
     return $request->user();
+    
 });
 
-// TYPES
-Route::get('/dashboard/types', [TypeController::class, 'get']);
-Route::post('/dashboard/type/add', [TypeController::class, "store"]);
-Route::put('/dashboard/type/edit/{slug}', [TypeController::class, 'edit']);
-Route::put('/dashboard/type/edit/image/{slug}', [TypeController::class, 'editImage']);
-Route::delete('/dashboard/type/delete/{slug}', [TypeController::class, 'destroy']);
-Route::put('/dashboard/type/delete/setupimage/{slug}/{index}', [TypeController::class, 'deleteSetupImage']);
-Route::post('/dashboard/type/add/setupimage/{slug}', [TypeController::class, 'addImage']);
+    // TYPES
+    Route::get('/dashboard/types', [TypeController::class, 'get']);
+    Route::post('/dashboard/type/add', [TypeController::class, "store"]);
+    Route::put('/dashboard/type/edit/{slug}', [TypeController::class, 'edit']);
+    Route::put('/dashboard/type/edit/image/{slug}', [TypeController::class, 'editImage']);
+    Route::put('/dashboard/type/edit/setupimage/{slug}', [TypeController::class, 'ediySetupImage']);
+    Route::delete('/dashboard/type/delete/{slug}', [TypeController::class, 'destroy']);
 
-// BLOGS
-Route::get('/dashboard/blogs', [BlogController::class, 'get']);
-Route::post('/dashboard/blogs/add', [BlogController::class, 'add']);
-Route::delete('/dashboard/blogs/delete/{id}', [BlogController::class, 'delete']);
-Route::put('dashboard/blogs/edit/{slug}', [BlogController::class, 'edit']);
-Route::put('dashboard/blogs/edit/image/{slug}', [BlogController::class, 'editImage']);
+    // BLOGS
+    Route::get('/dashboard/blogs', [BlogController::class, 'get']);
+    Route::post('/dashboard/blogs/add', [BlogController::class, 'add']);
+    Route::delete('/dashboard/blogs/delete/{id}', [BlogController::class, 'delete']);
+    Route::put('dashboard/blogs/edit/{slug}', [BlogController::class, 'edit']);
+    Route::put('dashboard/blogs/edit/image/{slug}', [BlogController::class, 'editImage']);
 
-// PORTFOLIOS
-Route::get('/dashboard/portfolios', [PortfolioController::class, 'get']);
-Route::post('/dashboard/portfolio/add', [PortfolioController::class, 'store']);
-Route::delete('dashboard/portfolio/delete/{id}', [PortfolioController::class, 'destroy']);
+    // PORTFOLIOS
+    Route::get('/dashboard/portfolios', [PortfolioController::class, 'get']);
+    Route::post('/dashboard/portfolio/add', [PortfolioController::class, 'store']);
+    Route::delete('dashboard/portfolio/delete/{id}', [PortfolioController::class, 'destroy']);
 
-// POPUP
-Route::get('/dashboard/popup', [PopupController::class, 'get']);
-Route::post('/dashboard/popup/add', [PopupController::class, 'store']);
-Route::post('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);
+    // POPUP
+    Route::post('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);
+    Route::get('/dashboard/popup', [PopupController::class, 'get'])->middleware('auth:sanctum');
+    Route::post('/dashboard/popup/add', [PopupController::class, 'store']);
+    
+    // EMAIL
+    Route::post('/send-email', [EmailController::class, 'send']);
 
-// EMAIL
-Route::post('/send-email', [EmailController::class, 'send']);
+
