@@ -140,19 +140,19 @@ const whyCards = [
 
 const TestimonialCard = ({ data }) => (
     <div
-        className="w-72 h-96 rounded-3xl px-5 pb-3 flex flex-col justify-around text-white"
+        className="w-44 h-72 md:w-72 md:h-96 rounded-3xl px-5 pb-3 flex flex-col justify-around text-white"
         style={{ background: 'var(--color-secondary)' }}>
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
-            className="w-20">
+            className="w-10 md:w-20">
             <path
                 fill="#f3efe7"
                 d="M448 296c0 66.3-53.7 120-120 120l-8 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l8 0c30.9 0 56-25.1 56-56l0-8-64 0c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l64 0c35.3 0 64 28.7 64 64l0 136zm-256 0c0 66.3-53.7 120-120 120l-8 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l8 0c30.9 0 56-25.1 56-56l0-8-64 0c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l64 0c35.3 0 64 28.7 64 64l0 136z"
             />
         </svg>
-        <p>{data.comment}</p>
-        <h2 className="text-4xl font-bold">{data.name}</h2>
+        <p className="text-xs md:text-lg">{data.comment}</p>
+        <h2 className="text-2xl md:text-4xl font-bold">{data.name}</h2>
     </div>
 )
 
@@ -181,7 +181,7 @@ const Home = async () => {
             <Popup popup={popup} />
 
             {/* Hero */}
-            <section className="relative flex flex-col items-center h-[45rem] md:h-[50rem] lg:h-screen pt-20 md:pt-20 lg:pt-12 sm:pt-0">
+            <section className="relative flex flex-col items-center h-screen md:h-[50rem] lg:h-screen pt-36 md:pt-20 lg:pt-12 sm:pt-0">
                 <h1 className="md:text-6xl text-3xl text-black text-center leading-[2.5rem] md:leading-[4.2rem]">
                     MOMENTS
                     <br />
@@ -195,31 +195,32 @@ const Home = async () => {
                     disimpan selamanya.
                 </p>
                 <StyledLink text="Order Now!" link="/services" />
-                {[
-                    {
-                        src: Image1,
-                        alt: 'Home Image 1',
-                        pos: 'left-0 md:left-20',
-                    },
-                    {
-                        src: Image2,
-                        alt: 'Home Image 2',
-                        pos: 'right-0 md:right-20',
-                    },
-                ].map(({ src, alt, pos }) => (
-                    <figure
-                        key={alt}
-                        className={`absolute w-44 h-44 md:w-64 md:h-64 bottom-32 md:bottom-16 ${pos}`}>
-                        <Image
-                            src={src}
-                            alt={alt}
-                            fill
-                            priority
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                            className="object-cover"
-                        />
-                    </figure>
-                ))}
+                <div className="relative mt-[400px] md:mt-80">
+                    {[
+                        {
+                            src: Image2,
+                            alt: 'Home Image 1',
+                            pos: 'left-0 md:left-56',
+                        },
+                        {
+                            src: Image1,
+                            alt: 'Home Image 2',
+                            pos: 'right-0 md:right-56',
+                        },
+                    ].map(({ src, alt, pos }) => (
+                        <figure
+                            key={alt}
+                            className={`absolute w-36 h-36 md:w-64 md:h-64 bottom-56 md:bottom-16 ${pos}`}>
+                            <Image
+                                src={src}
+                                alt={alt}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                className="object-cover"
+                            />
+                        </figure>
+                    ))}
+                </div>
             </section>
 
             {/* Types */}

@@ -85,7 +85,7 @@ const ServicePage = async ({ params }) => {
                             fill
                             priority
                             fetchPriority="high"
-                            sizes="100vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="invisible"
                         />
                         <div className="absolute inset-0 bg-black/50 z-10" />
@@ -125,7 +125,7 @@ const ServicePage = async ({ params }) => {
                                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image}`}
                                     alt={`${type?.name} setup ${index + 1}`}
                                     fill
-                                    quality={75}
+                                    quality={90}
                                     loading="lazy"
                                     sizes={getSizes(index)}
                                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"

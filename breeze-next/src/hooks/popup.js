@@ -36,7 +36,6 @@ export const usePopup = () => {
         )
 
         if (response.status === 201) mutate()
-        console.log(response)
 
         return response
     }
