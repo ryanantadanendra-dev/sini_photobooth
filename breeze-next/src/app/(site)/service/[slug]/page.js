@@ -58,15 +58,6 @@ const ServicePage = async ({ params }) => {
     ]
     const getSpanClass = index => SPAN_PATTERN[index % SPAN_PATTERN.length]
 
-    const SPAN_SIZES = [
-        '(max-width: 768px) 100vw, 374px', // col-span-2 row-span-2 → ~374px wide on mobile grid
-        '(max-width: 768px) 100vw, 269px', // col-span-1 → ~269px
-        '(max-width: 768px) 100vw, 269px',
-        '(max-width: 768px) 100vw, 269px',
-        '(max-width: 768px) 100vw, 374px', // col-span-2
-    ]
-    const getSizes = index => SPAN_SIZES[index % SPAN_SIZES.length]
-
     return (
         <>
             <header>
@@ -111,38 +102,30 @@ const ServicePage = async ({ params }) => {
                     <h2 className="text-center text-black px-12 md:px-32 text-2xl md:text-4xl">
                         Our Setup
                     </h2>
-                    <p className="text-center text-[0.8rem] md:text-lg md:text-lg px-12 md:px-32 lg:px-96">
+                    <p className="text-center text-[0.8rem] md:text-lg  px-12 md:px-32 lg:px-64">
                         Take a closer look at the premium equipment, lighting,
                         and backdrops that bring your photobooth moments to
                         life.
                     </p>
-                    <div className="grid md:grid-cols-3 grid-cols-2 gap-3 min-h-[85vh] px-4 md:px-12 py-12">
-                        {type?.setupImages.map((image, index) => (
-                            <figure
-                                key={image.id}
-                                className={`relative overflow-hidden rounded-2xl min-h-56 md:min-h-72 group m-0 ${getSpanClass(index)}`}>
-                                <Image
-                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image}`}
-                                    alt={`${type?.name} setup ${index + 1}`}
-                                    fill
-                                    quality={90}
-                                    loading="lazy"
-                                    sizes={getSizes(index)}
-                                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                                />
-                                <span className="absolute top-4 left-4 text-[10px] tracking-widest text-white/40 uppercase">
-                                    {String(index + 1).padStart(2, '0')}
-                                </span>
-                            </figure>
-                        ))}
-                    </div>
+                    <figure
+                        className={`relative mx-auto mt-12 overflow-hidden rounded-2xl w-96 min-h-56 md:min-h-[80vh] group m-0 `}>
+                        <Image
+                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.setupImage}`}
+                            alt={`${type?.name} setup `}
+                            fill
+                            quality={90}
+                            loading="lazy"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                    </figure>
                 </section>
 
                 <section className="w-screen h-full flex flex-col items-center py-12">
                     <h2 className="text-center px-12 md:px-32 md:text-3xl text-black">
                         How It Works?
                     </h2>
-                    <p className="text-center text-[0.8rem] md:text-lg px-12 md:px-32 lg:px-96">
+                    <p className="text-center text-[0.8rem] md:text-lg px-12 md:px-32 lg:px-64">
                         Watch how our photobooth works and see how easy it is
                         for guests to capture fun and memorable moments
                     </p>

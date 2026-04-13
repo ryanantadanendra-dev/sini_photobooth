@@ -9,9 +9,7 @@ use App\Http\Controllers\PopupController;
 use App\Http\Controllers\EmailController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    
     return $request->user();
-    
 });
 
     // TYPES
@@ -36,7 +34,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
     // POPUP
     Route::post('/dashboard/popup/edit/{id}', [PopupController::class, 'edit']);
-    Route::get('/dashboard/popup', [PopupController::class, 'get'])->middleware('auth:sanctum');
+    Route::get('/dashboard/popup', [PopupController::class, 'get']);
     Route::post('/dashboard/popup/add', [PopupController::class, 'store']);
     
     // EMAIL

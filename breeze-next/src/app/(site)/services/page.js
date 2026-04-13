@@ -68,33 +68,37 @@ const ServicesPage = async () => {
                         Explore Our Photo Booth Collections
                     </p>
                     <div className="flex justify-center flex-wrap gap-12 mt-10">
-                        {types?.data.map((type, index) => (
-                            <Link
-                                key={type?.id}
-                                href={`/service/${type?.slug}`}
-                                aria-label="Type Page Link">
-                                <figure className="w-72 h-56">
-                                    <div className="relative w-full h-48 overflow-hidden rounded-2xl">
-                                        <Image
-                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.image}`}
-                                            alt={`${type?.name} image`}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            {...(index < 2
-                                                ? {
-                                                      priority: true,
-                                                      fetchPriority: 'high',
-                                                  }
-                                                : { loading: 'lazy' })}
-                                            className="object-cover hover:scale-110 transition-all duration-100 ease-out"
-                                        />
-                                    </div>
-                                    <figcaption className="text-center text-2xl mt-3">
-                                        {type?.name}
-                                    </figcaption>
-                                </figure>
-                            </Link>
-                        ))}
+                        {types?.data.length > 0 ? (
+                            types?.data.map((type, index) => (
+                                <Link
+                                    key={type?.id}
+                                    href={`/service/${type?.slug}`}
+                                    aria-label="Type Page Link">
+                                    <figure className="w-72 h-56">
+                                        <div className="relative w-full h-48 overflow-hidden rounded-2xl">
+                                            <Image
+                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.image}`}
+                                                alt={`${type?.name} image`}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                {...(index < 2
+                                                    ? {
+                                                          priority: true,
+                                                          fetchPriority: 'high',
+                                                      }
+                                                    : { loading: 'lazy' })}
+                                                className="object-cover hover:scale-110 transition-all duration-100 ease-out"
+                                            />
+                                        </div>
+                                        <figcaption className="text-center text-2xl mt-3">
+                                            {type?.name}
+                                        </figcaption>
+                                    </figure>
+                                </Link>
+                            ))
+                        ) : (
+                            <p className="text-center">No Type Yet!</p>
+                        )}
                     </div>
                 </section>
 

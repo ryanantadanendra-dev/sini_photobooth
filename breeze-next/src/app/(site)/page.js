@@ -224,7 +224,7 @@ const Home = async () => {
             </section>
 
             {/* Types */}
-            <div className="w-screen min-h-screen md:min-h-full lg:min-h-screen">
+            <div className="w-screen min-h-screen md:min-h-full lg:min-h-full">
                 <TypesLayout />
             </div>
 
@@ -233,7 +233,7 @@ const Home = async () => {
                 <h2 className="font-bold text-2xl md:text-4xl text-center text-black">
                     Why Choose Us?
                 </h2>
-                <p className="text-center md:px-12 lg:px-96 text-[0.8rem] md:text-[1rem] px-12 md:px-32">
+                <p className="text-center lg:px-96 text-[0.8rem] md:text-[1rem] px-12 md:px-32">
                     Discover why clients trust our photobooth services to bring
                     fun, quality photos, and unforgettable memories
                 </p>

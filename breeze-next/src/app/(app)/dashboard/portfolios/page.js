@@ -97,7 +97,11 @@ const PortfoliosPage = () => {
                 </div>
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                <Form title="Add Data" inputs={['images']} handle={handleAdd} />
+                <Form
+                    title="Add Image"
+                    inputs={['images']}
+                    handle={handleAdd}
+                />
             </Modal>
         </div>
     )

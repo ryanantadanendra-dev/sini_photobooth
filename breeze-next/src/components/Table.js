@@ -178,7 +178,7 @@ const Table = ({
                             )}
 
                             <td className="md:w-full w-32">
-                                <div className="flex flex-col items-center justify-center w-56">
+                                <div className="flex flex-col items-center justify-center w-full">
                                     <figure className="relative w-20 h-20 md:w-32 md:h-32 mb-2">
                                         <Image
                                             fill
@@ -252,13 +252,6 @@ const Table = ({
                                             )
                                         }
                                     />
-                                    {isTypes && (
-                                        <AddImageIcon
-                                            onClick={() =>
-                                                openModal('add-image', row)
-                                            }
-                                        />
-                                    )}
                                 </div>
                             </td>
                         </tr>

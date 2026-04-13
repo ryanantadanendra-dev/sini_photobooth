@@ -52,6 +52,11 @@ const Navigation = ({ user }) => {
                             active={usePathname() === '/dashboard/portfolios'}>
                             Portfolios
                         </NavLink>
+                        <NavLink
+                            href="/dashboard/popup"
+                            active={usePathname() === '/dashboard/popup'}>
+                            Popup
+                        </NavLink>
                     </div>
 
                     {/* Hamburger */}
@@ -113,6 +118,11 @@ const Navigation = ({ user }) => {
                                     usePathname() === '/dashboard/portfolios'
                                 }>
                                 Portfolios
+                            </NavLink>
+                            <NavLink
+                                href="/dashboard/popup"
+                                active={usePathname() === '/dashboard/popup'}>
+                                Popup
                             </NavLink>
                         </div>
                     </div>

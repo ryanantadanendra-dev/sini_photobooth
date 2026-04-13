@@ -33,6 +33,6 @@ const BlogCards = () => {
         </div>
     ))
 
-    return displayData
+    return blogs?.data.length > 0 ? displayData : <p>No Blog Yet!</p>
 }
 export default BlogCards

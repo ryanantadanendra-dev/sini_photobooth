@@ -200,7 +200,7 @@ const TypesPage = () => {
     return (
         <div>
             <Header title="Types Page" />
-            <div className="md:px-12 mt-5">
+            <div className="md:px-12 px-3 mt-5">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="Add Type">

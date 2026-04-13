@@ -82,11 +82,15 @@ const BlogsPage = async () => {
                     subtitle="Stay inspired with insights, tips, and creative ideas to make every event unforgettable."
                 />
             </header>
-            <main className="min-h-screen md:min-h-full md:px-12 py-12">
+            <main className="min-h-screen md:min-h-[20rem]  md:px-12 py-12">
                 <div className="flex justify-center gap-8 md:gap-32 lg:gap-12 flex-wrap">
-                    {blogs?.data.map(blog => (
-                        <Card data={blog} index={blog?.id} />
-                    ))}
+                    {blogs?.data.length > 0 ? (
+                        blogs?.data.map(blog => (
+                            <Card data={blog} index={blog?.id} />
+                        ))
+                    ) : (
+                        <p className="text-center">No Blog Yet!</p>
+                    )}
                 </div>
             </main>
         </>

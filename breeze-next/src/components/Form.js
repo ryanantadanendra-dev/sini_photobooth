@@ -11,11 +11,12 @@ const MULTI_FILE_INPUTS = ['images']
 
 const Form = ({ title, inputs, data, handle }) => {
     const isAddForm = ADD_TITLES.includes(title)
+    const [extraImages, setExtraImages] = useState(0)
 
     const [preview, setPreview] = useState(
         title == 'Edit Image'
-            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data.image}`
-            : `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data.setupImage}`,
+            ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.image}`
+            : `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${data?.setupImage}`,
     )
 
     const fileRef = useRef(null)
@@ -71,8 +72,10 @@ const Form = ({ title, inputs, data, handle }) => {
                 setFormData(prev => ({ ...prev, setupImage: null }))
                 return
             }
+            setPreview(URL.createObjectURL(files[0]))
+            setExtraImages(files?.length - 1)
 
-            const key = title === 'Add Data' ? 'images' : 'setupImages'
+            const key = title === 'Add Image' && 'images'
             setFormData(prev => ({ ...prev, [key]: files }))
         },
         [title],
@@ -117,6 +120,21 @@ const Form = ({ title, inputs, data, handle }) => {
                             className="object-cover"
                         />
                     </figure>
+                ) : title == 'Add Image' ? (
+                    <figure className="w-56 h-56 relative mx-auto">
+                        {extraImages > 0 && (
+                            <p className="text-[1rem] flex justify-center items-center text-white absolute z-50 w-8 h-8 bg-red-500 rounded-full -top-3 -right-3">
+                                {extraImages}
+                            </p>
+                        )}
+                        <Image
+                            src={preview}
+                            alt="Upload Image"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover"
+                        />
+                    </figure>
                 ) : null}
 
                 <ul>
@@ -135,7 +153,7 @@ const Form = ({ title, inputs, data, handle }) => {
                                     name={i}
                                     multiple={MULTI_FILE_INPUTS.includes(i)}
                                     onChange={
-                                        i === 'image' || i == 'setupImage'
+                                        i === 'image' || i === 'setupImage'
                                             ? handleFileChange
                                             : handleFilesChange
                                     }
