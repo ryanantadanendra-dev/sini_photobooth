@@ -33,14 +33,11 @@ const BlogsPage = () => {
 
             setIsOpen(false)
         } catch (error) {
-            await add(formData)
-
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: error?.response?.data?.message,
             })
-            setIsOpen(false)
         }
     }
 

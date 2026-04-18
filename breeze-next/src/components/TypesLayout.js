@@ -35,7 +35,7 @@ const TypesLayout = () => {
                               <div className="w-full flex md:justify-start justify-center">
                                   <StyledLink
                                       text="Learn More"
-                                      link={`/service/${type?.slug}`}
+                                      link={`/type/${type?.slug}`}
                                   />
                               </div>
                           </div>

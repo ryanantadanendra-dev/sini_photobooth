@@ -18,6 +18,7 @@ class PortfolioController extends Controller
     }
 
     public function store(Request $request) {
+
         $validateImage = $request->validate([
             'images'   => ['required', 'array', 'min:1'],
             'images.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],

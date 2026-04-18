@@ -29,15 +29,22 @@ export const useBlog = () => {
         data.append('content', formData.content)
         data.append('image', formData.image)
 
-        const response = await axios.post('/api/dashboard/blogs/add', data, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        })
+        try {
+            const response = await axios.post(
+                '/api/dashboard/blogs/add',
+                data,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                },
+            )
 
-        if (response.status === 201) mutate()
-
-        return response
+            if (response.status === 201) mutate()
+            return response
+        } catch (error) {
+            throw error
+        }
     }
 
     const deleteData = async slug => {
@@ -62,15 +69,19 @@ export const useBlog = () => {
         data.append('content', formData.content)
         data.append('_method', 'PUT')
 
-        const response = await axios.post(
-            `/api/dashboard/blogs/edit/${slug}`,
-            data,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
+        try {
+            const response = await axios.post(
+                `/api/dashboard/blogs/edit/${slug}`,
+                data,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
                 },
-            },
-        )
+            )
+        } catch (error) {
+            throw error
+        }
 
         if (response.status === 201) mutate()
 

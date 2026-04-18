@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Image1 from '../../../public/Assets/hero3.png'
-import Image2 from '../../../public/Assets/hero4.png'
+import Image1 from '../../../public/Assets/image1.jpg'
+import Image2 from '../../../public/Assets/hero4.jpg'
 import Image3 from '../../../public/Assets/Image1.jpg'
 import TypesLayout from '@/components/TypesLayout'
 import BlogCards from '@/components/BlogCards'
@@ -181,7 +181,7 @@ const Home = async () => {
             <Popup popup={popup} />
 
             {/* Hero */}
-            <section className="relative flex flex-col items-center h-screen md:h-[50rem] lg:h-screen pt-36 md:pt-20 lg:pt-12 sm:pt-0">
+            <section className="relative flex flex-col items-center h-screen md:h-[50rem] lg:h-screen pt-36 md:pt-20 lg:pt-24 sm:pt-0">
                 <h1 className="md:text-6xl text-3xl text-black text-center leading-[2.5rem] md:leading-[4.2rem]">
                     MOMENTS
                     <br />
@@ -194,23 +194,23 @@ const Home = async () => {
                     kebahagiaan layak dikenang dan setiap cerita pantas untuk
                     disimpan selamanya.
                 </p>
-                <StyledLink text="Order Now!" link="/services" />
+                <StyledLink text="Order Now!" link="/types" />
                 <div className="relative mt-[400px] md:mt-80">
                     {[
                         {
                             src: Image2,
                             alt: 'Home Image 1',
-                            pos: 'left-0 md:left-56',
+                            pos: 'left-0 md:left-32 lg:left-56',
                         },
                         {
                             src: Image1,
                             alt: 'Home Image 2',
-                            pos: 'right-0 md:right-56',
+                            pos: 'right-0 md:right-32 lg:right-56',
                         },
                     ].map(({ src, alt, pos }) => (
                         <figure
                             key={alt}
-                            className={`absolute w-36 h-36 md:w-64 md:h-64 bottom-56 md:bottom-16 ${pos}`}>
+                            className={`absolute w-36 h-36 md:w-56 md:h-56 lg:w-96 lg:h-72 bottom-56 md:bottom-16 ${pos}`}>
                             <Image
                                 src={src}
                                 alt={alt}
@@ -300,7 +300,7 @@ const Home = async () => {
             </section>
 
             {/* Blogs */}
-            <section className="blogs-section w-full min-h-full md:min-h-screen py-32">
+            <section className="blogs-section w-full min-h-full md:min-h-96 py-32">
                 <h2 className="text-center font-bold text-2xl md:text-4xl text-black px-12 md:px-32">
                     Check Out Our Latest Article
                 </h2>

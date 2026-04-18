@@ -40,7 +40,7 @@ const Hamburger = ({ isOpen, setIsOpen, goToSection, slugify }) => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}>
                     <Link
-                        href="/services"
+                        href="/types"
                         onClick={() => setIsOpen(false)}
                         className="ms-3">
                         Photobooth Types

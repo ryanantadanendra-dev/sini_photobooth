@@ -54,7 +54,7 @@ const EmblaCarousel = ({ options, datas }) => {
                                     quality={90}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    className="embla__slide__img object-cover"
+                                    className="embla__slide__img object-contain object-top"
                                     // placeholder="blur"
                                 />
                             </figure>

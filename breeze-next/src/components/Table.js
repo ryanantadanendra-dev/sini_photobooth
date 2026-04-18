@@ -66,7 +66,11 @@ const Table = ({
     const showSuccess = msg =>
         Swal.fire({ icon: 'success', title: 'Success', text: msg })
     const showError = err =>
-        Swal.fire({ icon: 'error', title: 'Error', text: err?.message ?? err })
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: err?.response?.data?.message ?? err?.message ?? err,
+        })
 
     const handleEdit = useCallback(
         async (e, slug, formData, setFormData) => {

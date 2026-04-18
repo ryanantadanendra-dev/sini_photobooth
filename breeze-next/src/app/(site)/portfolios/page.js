@@ -71,7 +71,7 @@ const PortfoliosPage = async () => {
                     subtitle="See how we turn ordinary events into extraordinary memories through creativity, quality, and unforgettable photo booth experiences. "
                 />
             </header>
-            <main>
+            <main className="lg:min-h-96 md:min-h-96 min-h-96">
                 <div
                     className={`grid grid-cols-1 md:grid-cols-3 auto-rows-[180px] gap-2 ${portfolios?.data.length > 0 && 'px-12'} mt-10 py-12`}>
                     {portfolios?.data.length > 0 ? (

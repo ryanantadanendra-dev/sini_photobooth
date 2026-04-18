@@ -7,14 +7,17 @@ import Carousel from '@/components/Carousel'
 import Carousel1 from '../../../../public/Assets/carousel1.jpg'
 import Carousel2 from '../../../../public/Assets/carousel2.jpg'
 import Carousel3 from '../../../../public/Assets/carousel3.jpg'
+import Carousel4 from '../../../../public/Assets/carousel4.jpg'
 import QrImg from '../../../../public/Assets/qr.jpg'
 import DriveImg from '../../../../public/Assets/drive.jpg'
 import PoseImg from '../../../../public/Assets/pose.jpg'
+import PoseImg2 from '../../../../public/Assets/pose2.jpg'
 import InframeImg from '../../../../public/Assets/inframe.jpg'
 import PropImg1 from '../../../../public/Assets/property1.jpg'
 import PropImg2 from '../../../../public/Assets/property2.jpg'
 import CTA from '@/components/CTA'
 import Divider from '@/components/Divider'
+import IgVideo from '@/components/IgVIdeo'
 
 export const metadata = {
     title: 'Apa Saja Yang Kamu Dapatkan? - What You Will Get | Sini Photobooth',
@@ -57,7 +60,7 @@ export const metadata = {
     },
 }
 
-const carouselImages = [Carousel1, Carousel2, Carousel3]
+const carouselImages = [Carousel1, Carousel2, Carousel3, Carousel4]
 
 const datas = [
     {
@@ -142,18 +145,10 @@ const WhatYouGetPage = () => {
                         for guests to capture fun and memorable moments
                     </p>
                     <div className="flex flex-col items-center mt-10">
-                        <figure className="relative md:w-[30rem] w-[20rem] h-80 rounded-3xl">
-                            <iframe
-                                width="300"
-                                height="400"
-                                src="https://www.youtube.com/embed/_Sl8diqCAFw?si=0hAr2UiTAP58SZ5V"
-                                title="YouTube video player"
-                                frameborder="0"
-                                className="object-cover absolute w-full h-full rounded-3xl"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen></iframe>
-                        </figure>
+                        <IgVideo
+                            url={null}
+                            postUrl="https://www.instagram.com/siniphotobooth"
+                        />
                     </div>
                 </section>
                 <section className="result-sectoin w-screen h-full py-32 lg:py-12">
@@ -252,10 +247,19 @@ const WhatYouGetPage = () => {
                             that suits your needs
                         </p>
                     </div>
-                    <div className="md:w-1/2 w-full">
+                    <div className="md:w-1/2 w-full flex gap-5">
                         <figure className="relative md:w-96 w-72 h-72 md:h-96 mx-auto md:mx-0">
                             <Image
                                 src={PoseImg}
+                                alt="Pose Layout Image"
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-contain"
+                            />
+                        </figure>
+                        <figure className="relative md:w-96 w-72 h-72 md:h-96 mx-auto md:mx-0">
+                            <Image
+                                src={PoseImg2}
                                 alt="Pose Layout Image"
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

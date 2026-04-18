@@ -3,6 +3,7 @@ import getTypes from '@/lib/getType'
 import Image from 'next/image'
 import YouTubeFacade from '@/components/YoutubeFascade'
 import { notFound } from 'next/navigation'
+import IgVideo from '@/components/IgVIdeo'
 
 export async function generateMetadata({ params }) {
     const typesPromise = getTypes()
@@ -108,7 +109,7 @@ const ServicePage = async ({ params }) => {
                         life.
                     </p>
                     <figure
-                        className={`relative mx-auto mt-12 overflow-hidden rounded-2xl w-96 min-h-56 md:min-h-[80vh] group m-0 `}>
+                        className={`relative mx-auto mt-12 overflow-hidden rounded-2xl w-96 min-h-96 md:min-h-[80vh] md:w-[29rem] group m-0 `}>
                         <Image
                             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${type?.setupImage}`}
                             alt={`${type?.name} setup `}
@@ -129,9 +130,9 @@ const ServicePage = async ({ params }) => {
                         Watch how our photobooth works and see how easy it is
                         for guests to capture fun and memorable moments
                     </p>
-                    <YouTubeFacade
-                        vidLink={type?.vidLink}
-                        title="How the photobooth works"
+                    <IgVideo
+                        url={type?.vidLink}
+                        postUrl="https://instagram.com"
                     />
                 </section>
 

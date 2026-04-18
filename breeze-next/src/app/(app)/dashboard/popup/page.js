@@ -12,7 +12,7 @@ const PopupPage = () => {
     const { popup, edit } = usePopup()
     const [isOpen, setIsOpen] = useState(false)
 
-    const handleEdit = async (e, _, formData, inputRef) => {
+    const handleEdit = async (e, _, formData, setFormData, inputRef) => {
         e.preventDefault()
 
         try {
@@ -24,7 +24,9 @@ const PopupPage = () => {
                 icon: 'success',
             })
 
-            inputRef.current.value = null
+            if (inputRef?.current) {
+                inputRef.current.value = null
+            }
 
             setIsOpen(false)
         } catch (error) {

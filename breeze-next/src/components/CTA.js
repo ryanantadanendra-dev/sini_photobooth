@@ -13,7 +13,7 @@ const CTA = () => {
             </p>
             <div className="flex gap-10 mt-10">
                 <StyledLink text="Whatsapp" link="" />
-                <StyledLink text="Photobooth Types" link="/services" />
+                <StyledLink text="Photobooth Types" link="/types" />
             </div>
         </section>
     )

@@ -11,7 +11,7 @@ export const metadata = {
     description:
         'Temukan jenis photobooth yang sesuai untuk acaramu. Explore our photobooth types that suit your event',
     alternates: {
-        canonical: '/service',
+        canonical: '/type',
     },
     openGraph: {
         title: 'Jenis Photobooth Kami - Photobooth Types | Sini Photobooth',
@@ -50,7 +50,7 @@ export const metadata = {
     },
 }
 
-const ServicesPage = async () => {
+const TypesPage = async () => {
     const { types } = await getTypes()
 
     return (
@@ -72,7 +72,7 @@ const ServicesPage = async () => {
                             types?.data.map((type, index) => (
                                 <Link
                                     key={type?.id}
-                                    href={`/service/${type?.slug}`}
+                                    href={`/type/${type?.slug}`}
                                     aria-label="Type Page Link">
                                     <figure className="w-72 h-56">
                                         <div className="relative w-full h-48 overflow-hidden rounded-2xl">
@@ -126,4 +126,4 @@ const ServicesPage = async () => {
         </>
     )
 }
-export default ServicesPage
+export default TypesPage

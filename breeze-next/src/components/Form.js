@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg']
 const MAX_FILE_SIZE = 2 * 1024 * 1024
-const ADD_TITLES = ['Add Blog', 'Add Type', 'Add Data']
+const ADD_TITLES = ['Add Blog', 'Add Type', 'Add Data', 'Add Image']
 const MULTI_FILE_INPUTS = ['images']
 
 const Form = ({ title, inputs, data, handle }) => {
@@ -51,35 +51,32 @@ const Form = ({ title, inputs, data, handle }) => {
         setFormData(prev => ({ ...prev, [name]: value }))
     }, [])
 
-    const handleFilesChange = useCallback(
-        e => {
-            const files = Array.from(e.target.files)
+    const handleFilesChange = useCallback(e => {
+        const files = Array.from(e.target.files)
 
-            const invalidType = files.some(
-                f => !ALLOWED_IMAGE_TYPES.includes(f.type),
-            )
-            const invalidSize = files.some(f => f.size > MAX_FILE_SIZE)
+        const invalidType = files.some(
+            f => !ALLOWED_IMAGE_TYPES.includes(f.type),
+        )
+        const invalidSize = files.some(f => f.size > MAX_FILE_SIZE)
 
-            if (invalidType || invalidSize) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: invalidType
-                        ? 'File must be JPG, JPEG, or PNG'
-                        : 'File must be under 2MB',
-                })
-                e.target.value = null
-                setFormData(prev => ({ ...prev, setupImage: null }))
-                return
-            }
-            setPreview(URL.createObjectURL(files[0]))
-            setExtraImages(files?.length - 1)
+        if (invalidType || invalidSize) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: invalidType
+                    ? 'File must be JPG, JPEG, or PNG'
+                    : 'File must be under 2MB',
+            })
+            e.target.value = null
+            setFormData(prev => ({ ...prev, setupImage: null }))
+            return
+        }
+        setPreview(URL.createObjectURL(files[0]))
+        setExtraImages(files?.length - 1)
 
-            const key = title === 'Add Image' && 'images'
-            setFormData(prev => ({ ...prev, [key]: files }))
-        },
-        [title],
-    )
+        const key = e.target.name
+        setFormData(prev => ({ ...prev, [key]: files }))
+    }, [])
 
     const handleSubmit = e => {
         if (isAddForm) {
@@ -133,6 +130,7 @@ const Form = ({ title, inputs, data, handle }) => {
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover"
+                            required
                         />
                     </figure>
                 ) : null}

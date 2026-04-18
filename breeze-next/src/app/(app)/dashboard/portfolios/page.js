@@ -30,10 +30,16 @@ const PortfoliosPage = () => {
 
             setIsOpen(false)
         } catch (error) {
+            console.error('Full error:', error) // ← add this
+
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: error.response.data?.message,
+                // ✅ guard against non-Axios errors
+                text:
+                    error.response?.data?.message ??
+                    error.message ??
+                    'Something went wrong!',
             })
         }
     }

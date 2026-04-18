@@ -156,8 +156,8 @@ const Navbar = () => {
                         <li className="services-dropdown">
                             <div className="flex items-center gap-2">
                                 <NavLink
-                                    active={usePathname() === '/services'}
-                                    href="/services"
+                                    active={usePathname() === '/types'}
+                                    href="/types"
                                     className="text-black hover:text-[#DFAE74] transition-colors">
                                     Photobooth Type
                                 </NavLink>
@@ -196,9 +196,7 @@ const Navbar = () => {
                                             role="none">
                                             <button
                                                 onClick={() => {
-                                                    router.push(
-                                                        `/service/${type}`,
-                                                    )
+                                                    router.push(`/type/${type}`)
                                                     setIsDesktopMenuOpen(false)
                                                 }}
                                                 className="w-full text-left block"

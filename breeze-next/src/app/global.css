@@ -76,6 +76,8 @@
 }
 .embla__slide__img {
     user-select: none;
+    object-position: 0 -80px;
+    @apply lg:object-contain md:object-cover;
 }
 
 .content h2 {

@@ -35,6 +35,8 @@ class BlogController extends Controller
         // create slug
         $slug = Str::slug($request->title);
 
+        $path = null;
+
         if($request->hasFile('image')) {
             $path = $request->image->store('blogs', 'public');
         }
@@ -68,6 +70,13 @@ class BlogController extends Controller
             ]);
 
             $slug = Str::slug($validatedData['title']);
+
+            if(Blog::where('title', $request->title)->exists()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Title Already Used!"
+                ], 409);
+            }
 
             $blog->update([
                 'title' => $validatedData['title'],
